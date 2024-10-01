@@ -1,0 +1,39 @@
+
+
+
+.Home {
+    background-image:  url('C:\Users\Dev\Desktop\Asif Public School\asif-public-school\src\Home\aboutBg.jpg');
+    background-position: center;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    height: 600px; 
+    filter: brightness(0.6);
+   
+}
+
+.Homedata{
+    position: relative;
+    bottom: 290px;
+    align-items: center; 
+    justify-content: center;
+    text-align: center; 
+    color: rgb(255, 255, 255); 
+}
+@media (max-width: 768px) {   
+    .Home {
+        height: 400px; 
+    }
+    .Homedata{
+        bottom: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Home {
+        height: 300px;
+    }
+    .Homedata h2{
+        bottom: 220px;
+        font-size: 26px;
+    }
+}
