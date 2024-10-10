@@ -69,7 +69,7 @@ const Navbar = () => {
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="facilitiesDropdown">
                                 <li><Link className="dropdown-item" to="/">Admission Process</Link></li>
-                                <li><Link className="dropdown-item" to="/">Application Forms</Link></li>
+                                <li><Link className="dropdown-item" to="/AdmissionForm">Application Forms</Link></li>
                                 <li><Link className="dropdown-item" to="/"> Fees and Scholarships</Link></li>
                                 <li><Link className="dropdown-item" to="/">FAQ</Link></li>
                             </ul>
@@ -141,13 +141,13 @@ const Navbar = () => {
                                 />
 
                                 <button
-                                    className='border border-2 border-dark bg-warning'
+                                    className='border border-2 border-dark bg-primary'
                                     type="submit"
                                 >
                                     Submit
                                 </button>
                                 <button
-                                    className='border border-2 border-dark bg-warning'
+                                    className='border  border-2 border-dark bg-primary fs-3'
                                     type="button"
                                     onClick={handleCloseSignupClick}
                                 >
