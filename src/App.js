@@ -10,11 +10,14 @@ import VisionMissionGoals from './VissionMisson/VisionMissionGoals';
 import LeadingwithInnovation from './Leading with Innovation/LeadingwithInnovation';
 // import Main1 from './Main1/Main1';
 import Admissionforms from './Admissionform/Admissionforms'
+import Facilities from './StudentLife/Facilities';
+import Care from './Care/Care';
+import Contactus from './Contact/Contactus';
+
 const Layout = ({ children }) => (
   <>
       <Navbar />
       {children}
-      
       <Footer /> 
   </>
 
@@ -44,6 +47,7 @@ function App() {
               <Navbar />
               <Home />
               <About />
+              <Care/>
               <Services />
               <Footer />
             
@@ -74,6 +78,20 @@ function App() {
         <>
         <Layout>
         <Admissionforms/>
+         </Layout>
+        </>
+        } />
+        <Route path="/Facilities" element={
+        <>
+        <Layout>
+        <Facilities/>
+         </Layout>
+        </>
+        } />
+         <Route path="/ContactUs" element={
+        <>
+        <Layout>
+        <Contactus/>
          </Layout>
         </>
         } />

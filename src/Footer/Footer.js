@@ -38,10 +38,10 @@ export default function Footer() {
                         <ul className="list-unstyled m-2">
                             <li className="mb-2"><a href="#extended-care" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i> Extended Care</a></li>
                             <li className="mb-2"><a href="#handbook" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i> Handbook</a></li>
-                            <li className="mb-2"><a href="/" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i> About Us</a></li>
+                            <li className="mb-2"><a href="/About" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i> About Us</a></li>
                             <li className="mb-2"><a href="#classroom" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i> Classroom</a></li>
                             <li className="mb-2"><a href="#events" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i> Events</a></li>
-                            <li className="mb-2"><a href="#news" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i> News</a></li>
+                            <li className="mb-2"><a href="/ContactUs" className="text-dark text-decoration-none"><i className="fa fa-spinner"></i>Contact Us</a></li>
                         </ul>
                     </div>
                     <div className="col-md-3  ">

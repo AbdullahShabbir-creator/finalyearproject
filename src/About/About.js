@@ -8,7 +8,7 @@ export default function About() {
             
         <div className='text-center '>
             <h4 className='text-center m-3'>About Us</h4>
-            <div className='row ' style={{marginLeft:'0px', marginRight: '0px',backgroundColor:'#f5f0e1'}}>
+            <div className='row ' style={{marginLeft:'0px', marginRight: '0px',}}>
                 <div className='col-md-4 mb-2 mt-2'>
                     <div className='card text-center hover-effect ' style={{ width: '100%', height: '400px',borderRadius:'15px' }}>
                         <img className='card-img-top rounded-circle mx-auto d-block mt-2' src={sc1} alt="sc1" style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
