@@ -82,7 +82,7 @@ const Navbar = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     // Check for empty input fields
     if (isSignupVisible) {
       if (
@@ -96,13 +96,13 @@ const Navbar = () => {
     } else {
       const loginEmail = document.getElementById("loginEmail").value;
       const loginPassword = document.getElementById("loginPassword").value;
-
+  
       if (!loginEmail || !loginPassword) {
         alert("Please fill in all fields.");
         return;
       }
     }
-
+  
     const data = isSignupVisible
       ? {
           username: usernameRef.current.value,
@@ -110,43 +110,50 @@ const Navbar = () => {
           password: passwordRef.current.value,
         }
       : {
-          loginEmail: document.getElementById("loginEmail").value,
-          loginPassword: document.getElementById("loginPassword").value,
+          email: document.getElementById("loginEmail").value, // Changed from loginEmail to email
+          password: document.getElementById("loginPassword").value, // Changed from loginPassword to password
         };
-
+  
+    const url = isSignupVisible ? "http://localhost:5000/api/signup" : "http://localhost:5000/api/login";
+  
     try {
-      const response = await fetch("http://localhost:5000/api/signup", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Something went wrong");
       }
-
+  
       const result = await response.json();
       console.log("Success:", result);
       alert(isSignupVisible ? "Signup successful!" : "Login successful!");
+      
+      // Optionally, you could clear the input fields or redirect the user here.
+  
     } catch (error) {
       console.error("Error:", error);
+      alert("Error: " + error.message); // Show error message to the user
     }
   };
+  
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-white font-weight-bold">
+      <nav className="navbar navbar-expand-lg navbar-light font-weight-bold" >
         <div className="container">
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2BbZrHjvXQJ3FWOeXkYDCLNhsEW668dVmQ&s"
               alt="logo"
-              style={{ height: "45px", marginRight: "2px" }}
+              style={{ height: "45px", marginRight: "2px", mixBlendMode: "multiply", backgroundColor:"white"}}
             />
-            <h6 className="mb-0">
+            <h6 className="mb-0 font-weight-bold">
               Asif Public High <br /> School Islamabad
             </h6>
           </Link>
@@ -247,7 +254,7 @@ const Navbar = () => {
                 aria-labelledby="admissionsDropdown"
               >
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <Link className="dropdown-item" to="/Admissionprocedure">
                     Admission Process
                   </Link>
                 </li>

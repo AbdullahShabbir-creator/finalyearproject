@@ -1,51 +1,83 @@
-import React, { useState } from "react";
+// src/Chatbot.js
+import React, { useState } from 'react';
 
-const VideoComponent = () => {
-  const [isPaused, setIsPaused] = useState(false);
+const Chatbot = () => {
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([]);
 
-  const handleButtonClick = () => {
-    const video = document.getElementById("myVideo");
-    if (video.paused) {
-      video.play();
-      setIsPaused(false);
+  const predefinedQuestions = [
+    "What is the admission process?",
+    "What are the school hours?",
+    "What subjects are offered?",
+    "What extracurricular activities are available?",
+    "How can I contact the school?"
+  ];
+
+  const handleSend = (message) => {
+    const newMessages = [...messages, { text: message || input, sender: 'user' }];
+    const botResponse = getBotResponse(message || input);
+
+    if (botResponse) {
+      newMessages.push({ text: botResponse, sender: 'bot' });
+    }
+
+    setMessages(newMessages);
+    setInput('');
+  };
+
+  const getBotResponse = (message) => {
+    const lowerCaseMessage = message.toLowerCase();
+    if (lowerCaseMessage.includes('admission')) {
+      return '=>You can apply for admission by visiting our admissions page.';
+    } else if (lowerCaseMessage.includes('school hours')) {
+      return '=>Our school hours are from 8:00 AM to 3:00 PM.';
+    } else if (lowerCaseMessage.includes('subjects')) {
+      return '=>We offer a from KG to Matric.';
+    } else if (lowerCaseMessage.includes('extracurricular')) {
+      return '=>We have various extracurricular activities, including sports and clubs.';
+    } else if (lowerCaseMessage.includes('contact')) {
+      return '=>You can contact the school administration at Contact us page.';
     } else {
-      video.pause();
-      setIsPaused(true);
+      return '=>I\'m sorry, I don\'t have that information. For Further Information contact us';
     }
   };
 
   return (
-    <div className="position-relative">
-      <video autoPlay muted loop id="myVideo" style={videoStyle}>
-        <source
-          src="https://www.shutterstock.com/shutterstock/videos/1108241941/preview/stock-footage-children-near-the-school-playing-soccer-kids-a-school-education-kid-dream-concept-a-group-of.webm.mp4"
-          type="video/mp4"
+    <div className="container my-4">
+      <div className="border p-3 rounded bg-light" style={{ width:"50%", height: '400px', overflowY: 'auto' }}>
+        <h3 className='text-center text-primary'>Ask Question?</h3>
+        {messages.map((msg, index) => (
+          <div key={index} className={`mb-2 text-${msg.sender === 'user' ? 'end' : 'start'}`}>
+            <div className={`badge ${msg.sender === 'user' ? 'bg-primary' : 'bg-secondary'}`}>
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="input-group mt-3"style={{ width:"50%"}}>
+        <input
+          type="text"
+          className="form-control"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+          placeholder="Ask a question..."
         />
-        Your browser does not support HTML5 video.
-      </video>
-
-      <div className="position-fixed bottom-0 w-100 bg-dark text-light p-3">
-        <h1>Heading</h1>
-        <p>
-          Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat
-          phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum
-          maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore
-          latine molestiae, ad mutat oblique delicatissimi pro.
-        </p>
-        <button className="btn btn-dark" onClick={handleButtonClick}>
-          {isPaused ? "Play" : "Pause"}
-        </button>
+        <button className="btn btn-primary" onClick={() => handleSend()}>Send</button>
+      </div>
+      <div className="mt-3" style={{ width:"50%"}}>
+        {predefinedQuestions.map((question, index) => (
+          <button
+            key={index}
+            className="btn btn-outline-secondary m-1"
+            onClick={() => handleSend(question)}
+          >
+            {question}
+          </button>
+        ))}
       </div>
     </div>
   );
 };
 
-const videoStyle = {
-  position: "fixed",
-  right: 0,
-  bottom: 0,
-  minWidth: "100%",
-  minHeight: "100%",
-};
-
-export default VideoComponent;
+export default Chatbot;

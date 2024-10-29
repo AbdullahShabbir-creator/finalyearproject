@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const User = require("./Models/Users");
+const AdmissionForm = require("./Models/AdmissionForm");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -89,6 +90,24 @@ app.post("/api/login", async (req, res) => {
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ error: "An error occurred" });
+  }
+});
+// Admission routes
+app.post("/api/admissions", async (req, res) => {
+  try {
+    const { firstName, lastName, classAppliedFor, age } = req.body;
+
+    // Validate fields
+    if (!firstName || !lastName || !classAppliedFor || age === undefined) {
+      return res.status(400).json({ error: "All fields are required." });
+    }
+
+    const admission = new AdmissionForm(req.body);
+    await admission.save();
+    res.status(201).json(admission);
+  } catch (error) {
+    console.error("Admission creation error:", error);
+    res.status(400).json({ error: error.message });
   }
 });
 

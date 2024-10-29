@@ -13,6 +13,7 @@ import Admissionforms from "./Admissionform/Admissionforms";
 import Facilities from "./StudentLife/Facilities";
 import Care from "./Care/Care";
 import Contactus from "./Contact/Contactus";
+import Admissionprocedure from "./Admissionprocedure/Admissionprocedure";
 
 const Layout = ({ children }) => (
   <>
@@ -109,9 +110,21 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/Admissionprocedure"
+          element={
+            <>
+              <Layout>
+                <Admissionprocedure/>
+              </Layout>
+            </>
+          }
+        />
+
       </Routes>
     </Router>
   );
 }
 
 export default App;
+

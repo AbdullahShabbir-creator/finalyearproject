@@ -4,41 +4,23 @@ import { Link } from "react-router-dom";
 const Admissionforms = () => {
   const [formData, setFormData] = useState({
     firstName: "",
-    middleName: "",
     lastName: "",
-    guardianName: "",
-    guardianPhone: "",
-    correspondenceAddress: "",
-    permanentAddress: "",
-    email: "",
-    mobile: "",
-    dateOfBirth: "",
-    placeOfBirth: {
-      city: "",
-      country: "",
-      postalCode: "",
-    },
-    nationality: "",
-    age: "",
     classAppliedFor: "",
-    oldSchool: "",
-    oldGrade: "",
-    father: {
-      name: "",
-      nic: "",
-      address: "",
-      occupation: "",
-      employer: "",
-      phone: "",
-    },
-    mother: {
-      name: "",
-      nic: "",
-      address: "",
-      occupation: "",
-      employer: "",
-      phone: "",
-    },
+    age: "",
+    gender: "",
+    dob: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    guardianName: "",
+    contactNumber: "",
+    email: "",
+    previousSchool: "",
+    emergencyContact: "",
+    emergencyContactNumber: "",
+    medicalInfo: "",
+    additionalNotes: "",
   });
 
   const handleChange = (e) => {
@@ -49,43 +31,42 @@ const Admissionforms = () => {
     });
   };
 
-  const handleNestedChange = (e, parentKey) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [parentKey]: {
-        ...formData[parentKey],
-        [name]: value,
-      },
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+  
+    console.log("Form Data Submitted:", formData); // Debugging line
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/admissions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Convert form data to JSON
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to submit admission form");
+      }
+  
+      const result = await response.json();
+      console.log("Form submitted successfully:", result);
+      alert("Data Submitted ")
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
     <>
       <div className="m-5 text-center">
         <h2>Join Us For Better Future</h2>
-        <Link to="/Admissionform">
-          <img
-            src="https://www.fillhq.com/wp-content/smush-webp/2023/02/Online-Registration-Form-Efficient-Way-For-Data-Collection-1-1536x864.png.webp"
-            alt="Online Registration Form"
-            style={{
-              width: "100%",
-              maxWidth: "800px",
-              height: "auto",
-              borderRadius: "20px",
-              margin: "0 auto",
-              display: "block",
-            }}
-          />
+        <Link to="/Admissionprocedure">
+          Click to Check Admission Procedure!
         </Link>
       </div>
 
-      <form className="admission-form " onSubmit={handleSubmit}>
+      <form className="admission-form" onSubmit={handleSubmit}>
         <h2 className="text-center">Admission Form</h2>
         <div className="form-group">
           <label>First Name:</label>
@@ -95,15 +76,7 @@ const Admissionforms = () => {
             value={formData.firstName}
             onChange={handleChange}
             required
-          />
-        </div>
-        <div className="form-group">
-          <label>Middle Name:</label>
-          <input
-            type="text"
-            name="middleName"
-            value={formData.middleName}
-            onChange={handleChange}
+            className="short-input"
           />
         </div>
         <div className="form-group">
@@ -114,119 +87,7 @@ const Admissionforms = () => {
             value={formData.lastName}
             onChange={handleChange}
             required
-          />
-        </div>
-        <div className="form-group">
-          <label>Father’s/Guardian’s Name:</label>
-          <input
-            type="text"
-            name="guardianName"
-            value={formData.guardianName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Father’s/Guardian’s Phone No:</label>
-          <input
-            type="text"
-            name="guardianPhone"
-            value={formData.guardianPhone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Address for Correspondence:</label>
-          <textarea
-            name="correspondenceAddress"
-            value={formData.correspondenceAddress}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Permanent Address:</label>
-          <textarea
-            name="permanentAddress"
-            value={formData.permanentAddress}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Email Address:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Mobile Phone No:</label>
-          <input
-            type="text"
-            name="mobile"
-            value={formData.mobile}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Date of Birth:</label>
-          <input
-            type="date"
-            name="dateOfBirth"
-            value={formData.dateOfBirth}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Place of Birth (City):</label>
-          <input
-            type="text"
-            name="city"
-            value={formData.placeOfBirth.city}
-            onChange={(e) => handleNestedChange(e, "placeOfBirth")}
-            required
-          />
-          <label>Postal/Zip Code:</label>
-          <input
-            type="text"
-            name="postalCode"
-            value={formData.placeOfBirth.postalCode}
-            onChange={(e) => handleNestedChange(e, "placeOfBirth")}
-          />
-          <label>Country:</label>
-          <input
-            type="text"
-            name="country"
-            value={formData.placeOfBirth.country}
-            onChange={(e) => handleNestedChange(e, "placeOfBirth")}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Nationality:</label>
-          <input
-            type="text"
-            name="nationality"
-            value={formData.nationality}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Age:</label>
-          <input
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            required
+            className="short-input"
           />
         </div>
         <div className="form-group">
@@ -237,118 +98,172 @@ const Admissionforms = () => {
             value={formData.classAppliedFor}
             onChange={handleChange}
             required
+            className="short-input"
           />
         </div>
         <div className="form-group">
-          <label>Previous School:</label>
+          <label>Age:</label>
           <input
-            type="text"
-            name="oldSchool"
-            value={formData.oldSchool}
+            type="number"
+            name="age"
+            value={formData.age}
             onChange={handleChange}
             required
+            className="short-input"
           />
         </div>
         <div className="form-group">
-          <label>Previous Grade:</label>
-          <input
-            type="text"
-            name="oldGrade"
-            value={formData.oldGrade}
+          <label>Gender:</label>
+          <select
+            name="gender"
+            value={formData.gender}
             onChange={handleChange}
             required
-          />
+            className="short-input"
+          >
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
         </div>
-        <h3>Father's Details</h3>
         <div className="form-group">
-          <label>Name:</label>
+          <label>Date of Birth:</label>
           <input
-            type="text"
-            name="name"
-            value={formData.father.name}
-            onChange={(e) => handleNestedChange(e, "father")}
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
             required
-          />
-          <label>N.I.C. No:</label>
-          <input
-            type="text"
-            name="nic"
-            value={formData.father.nic}
-            onChange={(e) => handleNestedChange(e, "father")}
-          />
-          <label>Address:</label>
-          <textarea
-            name="address"
-            value={formData.father.address}
-            onChange={(e) => handleNestedChange(e, "father")}
-          />
-          <label>Occupation:</label>
-          <input
-            type="text"
-            name="occupation"
-            value={formData.father.occupation}
-            onChange={(e) => handleNestedChange(e, "father")}
-          />
-          <label>Employer:</label>
-          <input
-            type="text"
-            name="employer"
-            value={formData.father.employer}
-            onChange={(e) => handleNestedChange(e, "father")}
-          />
-          <label>Telephone:</label>
-          <input
-            type="text"
-            name="phone"
-            value={formData.father.phone}
-            onChange={(e) => handleNestedChange(e, "father")}
+            className="short-input"
           />
         </div>
-        <h3>Mother's Details</h3>
         <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.mother.name}
-            onChange={(e) => handleNestedChange(e, "mother")}
-            required
-          />
-          <label>N.I.C. No:</label>
-          <input
-            type="text"
-            name="nic"
-            value={formData.mother.nic}
-            onChange={(e) => handleNestedChange(e, "mother")}
-          />
           <label>Address:</label>
-          <textarea
+          <input
+            type="text"
             name="address"
-            value={formData.mother.address}
-            onChange={(e) => handleNestedChange(e, "mother")}
+            value={formData.address}
+            onChange={handleChange}
+            required
+            className="short-input"
+            placeholder="Street Address"
           />
-          <label>Occupation:</label>
           <input
             type="text"
-            name="occupation"
-            value={formData.mother.occupation}
-            onChange={(e) => handleNestedChange(e, "mother")}
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            required
+            className="short-input"
+            placeholder="City"
           />
-          <label>Employer:</label>
           <input
             type="text"
-            name="employer"
-            value={formData.mother.employer}
-            onChange={(e) => handleNestedChange(e, "mother")}
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            required
+            className="short-input"
+            placeholder="State"
           />
-          <label>Telephone:</label>
           <input
             type="text"
-            name="phone"
-            value={formData.mother.phone}
-            onChange={(e) => handleNestedChange(e, "mother")}
+            name="zip"
+            value={formData.zip}
+            onChange={handleChange}
+            required
+            className="short-input"
+            placeholder="Zip Code"
           />
         </div>
+        <div className="form-group">
+          <label>Parent/Guardian Name:</label>
+          <input
+            type="text"
+            name="guardianName"
+            value={formData.guardianName}
+            onChange={handleChange}
+            required
+            className="short-input"
+          />
+        </div>
+        <div className="form-group">
+          <label>Contact Number:</label>
+          <input
+            type="tel"
+            name="contactNumber"
+            value={formData.contactNumber}
+            onChange={handleChange}
+            required
+            className="short-input"
+          />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="short-input"
+          />
+        </div>
+        <div className="form-group">
+          <label>Previous School Name:</label>
+          <input
+            type="text"
+            name="previousSchool"
+            value={formData.previousSchool}
+            onChange={handleChange}
+            required
+            className="short-input"
+          />
+        </div>
+        <div className="form-group">
+          <label>Emergency Contact Name:</label>
+          <input
+            type="text"
+            name="emergencyContact"
+            value={formData.emergencyContact}
+            onChange={handleChange}
+            required
+            className="short-input"
+          />
+        </div>
+        <div className="form-group">
+          <label>Emergency Contact Number:</label>
+          <input
+            type="tel"
+            name="emergencyContactNumber"
+            value={formData.emergencyContactNumber}
+            onChange={handleChange}
+            required
+            className="short-input"
+          />
+        </div>
+        <div className="form-group">
+          <label>Medical Conditions/Allergies:</label>
+          <textarea
+            name="medicalInfo"
+            value={formData.medicalInfo}
+            onChange={handleChange}
+            className="short-input"
+            placeholder="Any known medical conditions or allergies"
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label>Additional Notes:</label>
+          <textarea
+            name="additionalNotes"
+            value={formData.additionalNotes}
+            onChange={handleChange}
+            className="short-input"
+            placeholder="Additional information"
+          ></textarea>
+        </div>
+
         <button type="submit" className="submit-button">
           Submit
         </button>
