@@ -1,81 +1,79 @@
-
-
-
 .Home {
-    background-image:  url('C:\Users\Dev\Desktop\Asif Public School\asif-public-school\src\Home\aboutBg.jpg');
-    background-position: center;
-    background-size: cover; 
-    background-repeat: no-repeat;
-    height: 700px; 
-    filter: brightness(0.6);
-    animation: myAnim 2s ease 0s 1 normal forwards;
+  background-image: url("C:\Users\Dev\Desktop\Asif Public School\asif-public-school\src\Home\aboutBg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 700px;
+  filter: brightness(0.6);
+  animation: myAnim 2s ease 0s 1 normal forwards;
 }
 
-.Homedata{
-    position: relative;
-    bottom: 290px;
-    align-items: center; 
-    justify-content: center;
-    text-align: center; 
-    color: rgb(255, 255, 255); 
+.Homedata {
+  position: relative;
+  bottom: 290px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgb(255, 255, 255);
 }
-@media (max-width: 768px) {   
-    .Home {
-        height: 400px; 
-    }
-    .Homedata{
-        bottom: 220px;
-    }
+@media (max-width: 768px) {
+  .Home {
+    height: 400px;
+  }
+  .Homedata {
+    bottom: 220px;
+  }
 }
 
 @media (max-width: 480px) {
-    .Home {
-        height: 300px;
-    }
-    .Homedata h2{
-        bottom: 220px;
-        font-size: 26px;
-    }
-}@keyframes myAnim {
-	0% {
-		animation-timing-function: ease-in;
-		opacity: 0;
-		transform: translateY(-250px);
-	}
+  .Home {
+    height: 300px;
+  }
+  .Homedata h2 {
+    bottom: 220px;
+    font-size: 26px;
+  }
+}
+@keyframes myAnim {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: translateY(-250px);
+  }
 
-	38% {
-		animation-timing-function: ease-out;
-		opacity: 1;
-		transform: translateY(0);
-	}
+  38% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-	55% {
-		animation-timing-function: ease-in;
-		transform: translateY(-65px);
-	}
+  55% {
+    animation-timing-function: ease-in;
+    transform: translateY(-65px);
+  }
 
-	72% {
-		animation-timing-function: ease-out;
-		transform: translateY(0);
-	}
+  72% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
 
-	81% {
-		animation-timing-function: ease-in;
-		transform: translateY(-28px);
-	}
+  81% {
+    animation-timing-function: ease-in;
+    transform: translateY(-28px);
+  }
 
-	90% {
-		animation-timing-function: ease-out;
-		transform: translateY(0);
-	}
+  90% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
 
-	95% {
-		animation-timing-function: ease-in;
-		transform: translateY(-8px);
-	}
+  95% {
+    animation-timing-function: ease-in;
+    transform: translateY(-8px);
+  }
 
-	100% {
-		animation-timing-function: ease-out;
-		transform: translateY(0);
-	}
+  100% {
+    animation-timing-function: ease-out;
+    transform: translateY(0);
+  }
 }

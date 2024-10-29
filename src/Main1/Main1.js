@@ -1,62 +1,51 @@
-import React from 'react'
+import React, { useState } from "react";
 
-function Main1() {
+const VideoComponent = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
+  const handleButtonClick = () => {
+    const video = document.getElementById("myVideo");
+    if (video.paused) {
+      video.play();
+      setIsPaused(false);
+    } else {
+      video.pause();
+      setIsPaused(true);
+    }
+  };
+
   return (
-    <div className='carddata d-flex mt-2'>
-               
-    <div className="cards mt-5">
-        <div className="card">
-            <div className="image">
-                <img
-                    src="https://i.pinimg.com/originals/14/3e/60/143e60259ad35cbf08a4c3efe0929b39.jpg"
-                    alt="Card"
-                />
-            </div>
-            <div className="content">
-                <h3>Altbier(beer)</h3>
-                <p className='text-start'>
-                Altbier is a traditional German ale with rich, malty flavors and balanced hop bitterness, presenting an amber color and smooth, drinkable profile.
-                </p>
-            </div>
-        </div>
+    <div className="position-relative">
+      <video autoPlay muted loop id="myVideo" style={videoStyle}>
+        <source
+          src="https://www.shutterstock.com/shutterstock/videos/1108241941/preview/stock-footage-children-near-the-school-playing-soccer-kids-a-school-education-kid-dream-concept-a-group-of.webm.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support HTML5 video.
+      </video>
+
+      <div className="position-fixed bottom-0 w-100 bg-dark text-light p-3">
+        <h1>Heading</h1>
+        <p>
+          Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat
+          phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum
+          maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore
+          latine molestiae, ad mutat oblique delicatissimi pro.
+        </p>
+        <button className="btn btn-dark" onClick={handleButtonClick}>
+          {isPaused ? "Play" : "Pause"}
+        </button>
+      </div>
     </div>
+  );
+};
 
-    <div className="cards mt-5">
-        <div className="card">
-            <div className="image">
-                <img
-                    src="https://th.bing.com/th/id/OIP.mGBSut34-lzCt1vWZuPPfgHaE6?rs=1&pid=ImgDetMain"
-                    alt="Card"
-                />
-            </div>
-            <div className="content">
-                <h3>Bitter (beer)</h3>
-                <p>                        
-                Bitter is a British ale characterized by strong hop bitterness balanced by malt sweetness, usually amber in color. It offers floral and earthy aromas, making it a refreshing choice for hop lovers.
-                </p>
-            </div>
-        </div>
-    </div>
+const videoStyle = {
+  position: "fixed",
+  right: 0,
+  bottom: 0,
+  minWidth: "100%",
+  minHeight: "100%",
+};
 
-    <div className="cards mt-5">
-        <div className="card">
-            <div className="image">
-                <img
-                    src="https://th.bing.com/th/id/OIP.3pguck288KWgFGj6Qk3e6QHaE7?w=626&h=417&rs=1&pid=ImgDetMain"
-                    alt="Card"
-                />
-            </div>
-            <div className="content">
-                <h3>Brown Ale(beer)</h3>
-                <p>
-                Brown Ale is a rich, malty beer with caramel and chocolate notes, typically deep amber to brown in color. It has a smooth, slightly sweet flavor, making it a cozy choice for beer lovers.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-  )
-}
-
-export default Main1
+export default VideoComponent;
