@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import "./Admissionform.css"
 const Admissionforms = () => {
   const [formData, setFormData] = useState({
     firstName: "",

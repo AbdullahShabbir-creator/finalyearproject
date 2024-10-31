@@ -131,6 +131,10 @@ const Navbar = () => {
       }
   
       const result = await response.json();
+      if (!isSignupVisible) {
+        // Store login status in local storage on successful login
+        localStorage.setItem("isLoggedIn", "true");
+      }
       console.log("Success:", result);
       alert(isSignupVisible ? "Signup successful!" : "Login successful!");
       
@@ -306,7 +310,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="#faqs">
+                  <Link className="dropdown-item" to="/Faqs">
                     FAQs
                   </Link>
                 </li>
