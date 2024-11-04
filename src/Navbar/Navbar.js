@@ -272,11 +272,6 @@ const Navbar = () => {
                     Fees and Scholarships
                   </Link>
                 </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    FAQ
-                  </Link>
-                </li>
               </ul>
             </li>
             <li className="nav-item dropdown">

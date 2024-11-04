@@ -55,30 +55,30 @@ export default function Footer() {
             <ul className="list-unstyled m-2">
               <li className="mb-2">
                 <a
-                  href="#extended-care"
+                  href="/VisionMissionGoals"
                   className="text-dark text-decoration-none"
                 >
-                  <i className="fa fa-spinner"></i> Extended Care
+                  <i className="fa fa-spinner"></i> Mission
                 </a>
               </li>
               <li className="mb-2">
-                <a href="#handbook" className="text-dark text-decoration-none">
-                  <i className="fa fa-spinner"></i> Handbook
+                <a href="/AdmissionForm" className="text-dark text-decoration-none">
+                  <i className="fa fa-spinner"></i> Admission Form
                 </a>
               </li>
               <li className="mb-2">
-                <a href="/About" className="text-dark text-decoration-none">
-                  <i className="fa fa-spinner"></i> About Us
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="#classroom" className="text-dark text-decoration-none">
-                  <i className="fa fa-spinner"></i> Classroom
+                <a href="/Admissionprocedure" className="text-dark text-decoration-none">
+                  <i className="fa fa-spinner"></i> Admission Procedure
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#events" className="text-dark text-decoration-none">
                   <i className="fa fa-spinner"></i> Events
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="/Faqs" className="text-dark text-decoration-none">
+                  <i className="fa fa-spinner"></i> FAQs
                 </a>
               </li>
               <li className="mb-2">

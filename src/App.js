@@ -15,6 +15,7 @@ import Contactus from "./Contact/Contactus";
 import Admissionprocedure from "./Admissionprocedure/Admissionprocedure";
 import Homee from "./Home-1/Homee";
 import Faqs from "./FaqsAF/Faqs"
+import Chatbot from "./Chatbot/Main1";
 
 const Layout = ({ children }) => (
   <>
@@ -33,6 +34,7 @@ function App() {
             <>
               <Layout>
                 <VisionMissionGoals />
+                <Chatbot/>
               </Layout>
             </>
           }

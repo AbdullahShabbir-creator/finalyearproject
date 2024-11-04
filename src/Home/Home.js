@@ -1,68 +1,11 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Particles from 'react-tsparticles';
-
+import { SwiperSlide } from 'swiper/react';
 import './Home.css'; 
 
 const Home = () => {
   return (
     <div className='o'>
-      <div id="tsparticles">
-        <Particles
-          id="tsparticles"
-          options={{
-            fpsLimit: 60,
-            backgroundMode: {
-              enable: true,
-              zIndex: -1,
-            },
-            particles: {
-              number: {
-                value: 30,
-                density: {
-                  enable: true,
-                  area: 800,
-                },
-              },
-              color: {
-                value: [
-                  '#3998D0',
-                  '#2EB6AF',
-                  '#A9BD33',
-                  '#FEC73B',
-                  '#F89930',
-                  '#F45623',
-                  '#D62E32',
-                ],
-              },
-              shape: {
-                type: 'circle',
-              },
-              opacity: {
-                value: 1,
-                animation: {
-                  enable: false,
-                },
-              },
-              size: {
-                value: 8,
-                random: {
-                  enable: true,
-                  minimumValue: 4,
-                },
-              },
-              move: {
-                enable: true,
-                speed: 7,
-                direction: 'none',
-                straight: false,
-                out_mode: 'out',
-              },
-            },
-            detectRetina: true,
-          }}
-        />
-      </div>
+ 
       <section>
         <div className="content mt-4">
           <h1>Let's Explore The World Together!</h1>
@@ -76,17 +19,6 @@ const Home = () => {
           </div>
         </div>
 
-        <Swiper
-          className="swiper"
-          effect="cube"
-          grabCursor={true}
-          loop={true}
-          speed={1000}
-          autoplay={{
-            delay: 2600,
-            pauseOnMouseEnter: true,
-          }}
-        >
       
           <SwiperSlide>
             <img src="https://media.istockphoto.com/id/1338737959/photo/little-kids-schoolchildren-pupils-students-running-hurrying-to-the-school-building-for.jpg?s=612x612&w=0&k=20&c=u2eZV7PY4TTGKvxRBRkhiaDoFFEFPKeOlCsYARCqFSI=" alt="Walking Tour in Florence" />
@@ -99,7 +31,7 @@ const Home = () => {
              
             </div>
           </SwiperSlide>
-        </Swiper>   
+  
       </section>
     </div>
   );

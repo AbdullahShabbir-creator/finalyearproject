@@ -1,4 +1,3 @@
-// src/Chatbot.js
 import React, { useState } from 'react';
 
 const Chatbot = () => {
@@ -32,20 +31,20 @@ const Chatbot = () => {
     } else if (lowerCaseMessage.includes('school hours')) {
       return '=>Our school hours are from 8:00 AM to 3:00 PM.';
     } else if (lowerCaseMessage.includes('subjects')) {
-      return '=>We offer a from KG to Matric.';
+      return '=>We offer a range of subjects from KG to Matric.';
     } else if (lowerCaseMessage.includes('extracurricular')) {
       return '=>We have various extracurricular activities, including sports and clubs.';
     } else if (lowerCaseMessage.includes('contact')) {
-      return '=>You can contact the school administration at Contact us page.';
+      return '=>You can contact the school administration on the Contact Us page.';
     } else {
-      return '=>I\'m sorry, I don\'t have that information. For Further Information contact us';
+      return '=>I\'m sorry, I don\'t have that information. For further information, contact us.';
     }
   };
 
   return (
     <div className="container my-4">
-      <div className="border p-3 rounded bg-light" style={{ width:"50%", height: '400px', overflowY: 'auto' }}>
-        <h3 className='text-center text-primary'>Ask Question?</h3>
+      <div className="border p-3 rounded bg-light" style={{ height: '400px', overflowY: 'auto' }}>
+        <h3 className='text-center text-primary'>Ask a Question?</h3>
         {messages.map((msg, index) => (
           <div key={index} className={`mb-2 text-${msg.sender === 'user' ? 'end' : 'start'}`}>
             <div className={`badge ${msg.sender === 'user' ? 'bg-primary' : 'bg-secondary'}`}>
@@ -54,7 +53,7 @@ const Chatbot = () => {
           </div>
         ))}
       </div>
-      <div className="input-group mt-3"style={{ width:"50%"}}>
+      <div className="input-group mt-3">
         <input
           type="text"
           className="form-control"
@@ -65,12 +64,13 @@ const Chatbot = () => {
         />
         <button className="btn btn-primary" onClick={() => handleSend()}>Send</button>
       </div>
-      <div className="mt-3" style={{ width:"50%"}}>
+      <div className="mt-3 d-flex flex-wrap">
         {predefinedQuestions.map((question, index) => (
           <button
             key={index}
             className="btn btn-outline-secondary m-1"
             onClick={() => handleSend(question)}
+            style={{ flex: '1 1 100px' }} // Ensures buttons have a minimum width and wrap nicely
           >
             {question}
           </button>
