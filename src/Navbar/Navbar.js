@@ -244,7 +244,7 @@ const Navbar = () => {
               </Link>
               <ul className="dropdown-menu" aria-labelledby="academicsDropdown">
                 <li>
-                  <Link className="dropdown-item" to="/CurriculumOverview">
+                  <Link className="dropdown-item" to="/EducationCards">
                     Curriculum Overview
                   </Link>
                 </li>
@@ -313,7 +313,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="#learning">
+                  <Link className="dropdown-item" to="/Studentevents">
                     Student Events
                   </Link>
                 </li>

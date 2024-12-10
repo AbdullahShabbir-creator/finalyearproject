@@ -15,7 +15,9 @@ import Contactus from "./Contact/Contactus";
 import Admissionprocedure from "./Admissionprocedure/Admissionprocedure";
 import Homee from "./Home-1/Homee";
 import Faqs from "./FaqsAF/Faqs"
-import Chatbot from "./Chatbot/Main1";
+// import Chatbot from "./Chatbot/Main1";
+import Studentevents from "./Studentevent/Studentevents";
+import EducationCards from "./CurrculimOverview/CurrculimOverview";
 
 const Layout = ({ children }) => (
   <>
@@ -34,7 +36,28 @@ function App() {
             <>
               <Layout>
                 <VisionMissionGoals />
-                <Chatbot/>
+                <Studentevents/>
+              </Layout>
+            </>
+          }
+        />
+        <Route
+          path="/EducationCards"
+          element={
+            <>
+              <Layout>
+                <EducationCards/>
+              </Layout>
+            </>
+          }
+        />
+        <Route
+          path="/Studentevents"
+          element={
+            <>
+              <Layout>
+               
+                <Studentevents/>
               </Layout>
             </>
           }
