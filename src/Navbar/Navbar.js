@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+// Styled components
 const FormContainer = styled.div`
   background: #fff;
   padding: 2rem;
@@ -60,44 +61,52 @@ const StyledButton = styled.button`
   }
 `;
 
+// Navbar component
 const Navbar = () => {
   const [isSignupVisible, setIsSignupVisible] = useState(false);
   const [isLoginVisible, setIsLoginVisible] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Add this state
+  
+  
+  // State for form inputs
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    loginEmail: "",
+    loginPassword: "",
+  });
 
-  const usernameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-
-  const handleSignupClick = () => setIsSignupVisible(true);
-  const handleCloseSignupClick = () => setIsSignupVisible(false);
-
+  // Handle input change
   const handleChange = (e) => {
-    /* handle change logic */
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
   };
 
+
+  const handleCloseSignupClick = () => setIsSignupVisible(false);
+  const handleSignupClick = () => {
+    setIsSignupVisible(true);
+    setIsLoginVisible(false);
+  };
+  
   const handleLoginClick = () => {
     setIsLoginVisible(true);
     setIsSignupVisible(false);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
   
-    // Check for empty input fields
     if (isSignupVisible) {
-      if (
-        !usernameRef.current.value ||
-        !emailRef.current.value ||
-        !passwordRef.current.value
-      ) {
+      if (!formData.username || !formData.email || !formData.password) {
         alert("Please fill in all fields.");
         return;
       }
     } else {
-      const loginEmail = document.getElementById("loginEmail").value;
-      const loginPassword = document.getElementById("loginPassword").value;
-  
-      if (!loginEmail || !loginPassword) {
+      if (!formData.loginEmail || !formData.loginPassword) {
         alert("Please fill in all fields.");
         return;
       }
@@ -105,13 +114,13 @@ const Navbar = () => {
   
     const data = isSignupVisible
       ? {
-          username: usernameRef.current.value,
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
         }
       : {
-          email: document.getElementById("loginEmail").value, // Changed from loginEmail to email
-          password: document.getElementById("loginPassword").value, // Changed from loginPassword to password
+          email: formData.loginEmail,
+          password: formData.loginPassword,
         };
   
     const url = isSignupVisible ? "http://localhost:5000/api/signup" : "http://localhost:5000/api/login";
@@ -131,31 +140,40 @@ const Navbar = () => {
       }
   
       const result = await response.json();
+      console.log("result" ,result)
       if (!isSignupVisible) {
-        // Store login status in local storage on successful login
         localStorage.setItem("isLoggedIn", "true");
+        setIsLoggedIn(true);
       }
-      console.log("Success:", result);
       alert(isSignupVisible ? "Signup successful!" : "Login successful!");
-      
-      // Optionally, you could clear the input fields or redirect the user here.
-  
+      setFormData({ username: "", email: "", password: "", loginEmail: "", loginPassword: "" });
+      setIsSignupVisible(false)
     } catch (error) {
-      console.error("Error:", error);
-      alert("Error: " + error.message); // Show error message to the user
+      alert("Error: " + error.message);
     }
   };
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false); 
+    alert("You have logged out.");
+  };
+  
   
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light font-weight-bold" >
+      <nav className="navbar navbar-expand-lg navbar-light font-weight-bold">
         <div className="container">
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2BbZrHjvXQJ3FWOeXkYDCLNhsEW668dVmQ&s"
               alt="logo"
-              style={{ height: "45px", marginRight: "2px", mixBlendMode: "multiply", backgroundColor:"white"}}
+              style={{
+                height: "45px",
+                marginRight: "2px",
+                mixBlendMode: "multiply",
+                backgroundColor: "white",
+              }}
             />
             <h6 className="mb-0 font-weight-bold">
               Asif Public High <br /> School Islamabad
@@ -174,7 +192,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className="collapse navbar-collapse text-dark" id="navbarNav">
-          <ul
+        <ul
             className="navbar-nav p-3 ms-auto"
             style={{ fontFamily: "fangsong" }}
           >
@@ -344,19 +362,22 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <button
-                className="btn btn-outline-primary"
-                onClick={handleSignupClick}
-              >
-                Account
-              </button>
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={isLoggedIn ? handleLogout : handleSignupClick} 
+                  >
+                    {isLoggedIn ? "Logout" : "Signup"} 
+                  </button>
             </li>
+
+
           </ul>
         </div>
       </nav>
 
+     
       {isSignupVisible && (
-        <FormContainer className="mt-2 ">
+        <FormContainer className="mt-2">
           <form id="signupForm" onSubmit={handleSubmit}>
             <Title>Signup Form</Title>
             <FormGroup>
@@ -364,9 +385,9 @@ const Navbar = () => {
               <StyledInput
                 type="text"
                 id="username"
-                ref={usernameRef}
-                required
+                value={formData.username}
                 onChange={handleChange}
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -374,9 +395,9 @@ const Navbar = () => {
               <StyledInput
                 type="email"
                 id="email"
-                ref={emailRef}
-                required
+                value={formData.email}
                 onChange={handleChange}
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -384,9 +405,9 @@ const Navbar = () => {
               <StyledInput
                 type="password"
                 id="password"
-                ref={passwordRef}
-                required
+                value={formData.password}
                 onChange={handleChange}
+                required
               />
             </FormGroup>
             <StyledButton type="submit">Submit</StyledButton>
@@ -403,17 +424,30 @@ const Navbar = () => {
         </FormContainer>
       )}
 
+      {/* Login Form */}
       {isLoginVisible && (
         <FormContainer className="mt-2">
           <form id="loginForm" onSubmit={handleSubmit}>
             <Title>Login Form</Title>
             <FormGroup>
               <StyledLabel htmlFor="loginEmail">Email:</StyledLabel>
-              <StyledInput type="text" id="loginEmail" required />
+              <StyledInput
+                type="text"
+                id="loginEmail"
+                value={formData.loginEmail}
+                onChange={handleChange}
+                required
+              />
             </FormGroup>
             <FormGroup>
               <StyledLabel htmlFor="loginPassword">Password:</StyledLabel>
-              <StyledInput type="password" id="loginPassword" required />
+              <StyledInput
+                type="password"
+                id="loginPassword"
+                value={formData.loginPassword}
+                onChange={handleChange}
+                required
+              />
             </FormGroup>
             <StyledButton type="submit">Login</StyledButton>
             <StyledButton
@@ -424,6 +458,9 @@ const Navbar = () => {
               }}
             >
               Back to Signup
+            </StyledButton>
+            <StyledButton type="button"  onClick={() => {setIsLoginVisible(false)}}>
+              Close
             </StyledButton>
           </form>
         </FormContainer>

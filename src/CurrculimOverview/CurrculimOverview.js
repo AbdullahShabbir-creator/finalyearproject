@@ -156,7 +156,42 @@ const EducationCards = () => {
         },
       ],
     },
-  ];
+  {
+    title: "Grades 9-10",
+    focus:
+      "Building on high school foundations, preparing for advanced studies and careers.",
+    subjects: [
+      {
+        title: "Language Arts",
+        description:
+          "Literary analysis, advanced composition, research papers, and public speaking.",
+      },
+      {
+        title: "Mathematics",
+        description:
+          "Algebra II, geometry, trigonometry, and introduction to calculus.",
+      },
+      {
+        title: "Science",
+        description:
+          "Advanced biology, chemistry, and physics with lab work and experiments.",
+      },
+      {
+        title: "Social Studies",
+        description: "Modern history, political science, and economics.",
+      },
+      {
+        title: "Foreign Languages",
+        description: "Learning a second language such as Spanish, French, etc.",
+      },
+      {
+        title: "Physical Education",
+        description: "Physical fitness, health education, and wellness.",
+      },
+    ],
+  },
+];
+
 
   return (
     <div className="container mt-5">
