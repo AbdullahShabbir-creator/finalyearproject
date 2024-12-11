@@ -18,6 +18,8 @@ import Faqs from "./FaqsAF/Faqs"
 // import Chatbot from "./Chatbot/Main1";
 import Studentevents from "./Studentevent/Studentevents";
 import EducationCards from "./CurrculimOverview/CurrculimOverview";
+import Schoolnews from "./SchoolNew/Schoolnews";
+import StudentCalender from "./Event Calender/EventCalender"
 
 const Layout = ({ children }) => (
   <>
@@ -36,7 +38,6 @@ function App() {
             <>
               <Layout>
                 <VisionMissionGoals />
-                <Studentevents/>
               </Layout>
             </>
           }
@@ -47,6 +48,26 @@ function App() {
             <>
               <Layout>
                 <EducationCards/>
+              </Layout>
+            </>
+          }
+        />
+        <Route
+          path="/Schoolnews"
+          element={
+            <>
+              <Layout>
+                <Schoolnews/>
+              </Layout>
+            </>
+          }
+        />
+        <Route
+          path="/StudentCalender"
+          element={
+            <>
+              <Layout>
+                <StudentCalender/>
               </Layout>
             </>
           }

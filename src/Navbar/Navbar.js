@@ -345,12 +345,12 @@ const Navbar = () => {
                 aria-labelledby="newsEventsDropdown"
               >
                 <li>
-                  <Link className="dropdown-item" to="#enrollment">
+                  <Link className="dropdown-item" to="/Schoolnews">
                     School News
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="#learning">
+                  <Link className="dropdown-item" to="/StudentCalender">
                     Events Calendar
                   </Link>
                 </li>
