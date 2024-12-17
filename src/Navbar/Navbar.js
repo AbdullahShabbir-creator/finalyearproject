@@ -60,10 +60,23 @@ const StyledButton = styled.button`
     background-color: #0056b3;
   }
 `;
+const StyledNavLink = styled(Link)`
+  color: #000; // Default text color
+  text-decoration: none; // Remove underline by default
+  font-family: "fangsong", sans-serif; // Apply font family
+  transition: all 0.3s ease; // Smooth transition for hover effects
 
+  &:hover {
+    // color:rgb(18, 134, 243); // Change text color on hover
+    text-decoration: none; // Underline the text on hover
+    transform: scale(1.05); // Slightly enlarge the link on hover
+    // Subtle background effect
+ 
+  }
+`;
 // Navbar component
 const Navbar = () => {
-  const [isSignupVisible, setIsSignupVisible] = useState(false);
+  // const [isSignupVisible, setIsSignupVisible] = useState(false);
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Add this state
   
@@ -87,43 +100,30 @@ const Navbar = () => {
   };
 
 
-  const handleCloseSignupClick = () => setIsSignupVisible(false);
-  const handleSignupClick = () => {
-    setIsSignupVisible(true);
-    setIsLoginVisible(false);
-  };
+  // // const handleCloseSignupClick = () => setIsSignupVisible(false);
+  // const handleSignupClick = () => {
+  //   setIsSignupVisible(true);
+  //   setIsLoginVisible(false);
+  // };
   
   const handleLoginClick = () => {
     setIsLoginVisible(true);
-    setIsSignupVisible(false);
+    
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
   
-    if (isSignupVisible) {
-      if (!formData.username || !formData.email || !formData.password) {
-        alert("Please fill in all fields.");
-        return;
-      }
-    } else {
-      if (!formData.loginEmail || !formData.loginPassword) {
-        alert("Please fill in all fields.");
-        return;
-      }
+    if (!formData.loginEmail || !formData.loginPassword) {
+      alert("Please fill in all fields.");
+      return;
     }
   
-    const data = isSignupVisible
-      ? {
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-        }
-      : {
-          email: formData.loginEmail,
-          password: formData.loginPassword,
-        };
+    const data = {
+      email: formData.loginEmail,
+      password: formData.loginPassword,
+    };
   
-    const url = isSignupVisible ? "http://localhost:5000/api/signup" : "http://localhost:5000/api/login";
+    const url = "http://localhost:5000/api/login";
   
     try {
       const response = await fetch(url, {
@@ -140,18 +140,15 @@ const Navbar = () => {
       }
   
       const result = await response.json();
-      console.log("result" ,result)
-      if (!isSignupVisible) {
-        localStorage.setItem("isLoggedIn", "true");
-        setIsLoggedIn(true);
-      }
-      alert(isSignupVisible ? "Signup successful!" : "Login successful!");
-      setFormData({ username: "", email: "", password: "", loginEmail: "", loginPassword: "" });
-      setIsSignupVisible(false)
+      console.log("result", result);
+  
+      alert("Login successful!");
+      setFormData({ loginEmail: "", loginPassword: "" });
     } catch (error) {
       alert("Error: " + error.message);
     }
   };
+  
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false); 
@@ -164,7 +161,7 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light font-weight-bold">
         <div className="container">
-          <Link className="navbar-brand d-flex align-items-center" to="/">
+         <Link  className="navbar-brand d-flex align-items-center" to="/">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2BbZrHjvXQJ3FWOeXkYDCLNhsEW668dVmQ&s"
               alt="logo"
@@ -197,12 +194,11 @@ const Navbar = () => {
             style={{ fontFamily: "fangsong" }}
           >
             <li className="nav-item">
-              <Link className="nav-link text-dark" to="/">
+            <StyledNavLink className="nav-link text-dark" to="/">
                 Home
-              </Link>
-            </li>
+              </StyledNavLink>            </li>
             <li className="nav-item dropdown">
-              <Link
+              <StyledNavLink 
                 className="nav-link dropdown-toggle text-dark"
                 to="#"
                 id="aboutDropdown"
@@ -211,28 +207,28 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 About Us
-              </Link>
+              </StyledNavLink>
               <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
                 <li>
-                  <Link
+                  <StyledNavLink 
                     className="dropdown-item text-dark"
                     to="/VisionMissionGoals"
                   >
                     Vision And Mission
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link
+                  <StyledNavLink 
                     className="dropdown-item text-dark"
                     to="/LeadingwithInnovation"
                   >
                     Leading with Innovation
-                  </Link>
+                  </StyledNavLink>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <Link
+              <StyledNavLink 
                 className="nav-link dropdown-toggle text-dark"
                 to="#"
                 id="academicsDropdown"
@@ -241,27 +237,27 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 Academics
-              </Link>
+              </StyledNavLink>
               <ul className="dropdown-menu" aria-labelledby="academicsDropdown">
                 <li>
-                  <Link className="dropdown-item" to="/EducationCards">
+                  <StyledNavLink  className="dropdown-item" to="/EducationCards">
                     Curriculum Overview
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <StyledNavLink  className="dropdown-item" to="/">
                     Examinations and Assessments
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <StyledNavLink  className="dropdown-item" to="/">
                     Special Programs
-                  </Link>
+                  </StyledNavLink>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <Link
+              <StyledNavLink 
                 className="nav-link dropdown-toggle text-dark"
                 to="#"
                 id="admissionsDropdown"
@@ -270,30 +266,30 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 Admissions
-              </Link>
+              </StyledNavLink>
               <ul
                 className="dropdown-menu"
                 aria-labelledby="admissionsDropdown"
               >
                 <li>
-                  <Link className="dropdown-item" to="/Admissionprocedure">
+                  <StyledNavLink  className="dropdown-item" to="/Admissionprocedure">
                     Admission Process
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/AdmissionForm">
+                  <StyledNavLink  className="dropdown-item" to="/AdmissionForm">
                     Application Forms
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <StyledNavLink  className="dropdown-item" to="/">
                     Fees and Scholarships
-                  </Link>
+                  </StyledNavLink>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <Link
+              <StyledNavLink 
                 className="nav-link dropdown-toggle text-dark"
                 to="#"
                 id="studentLifeDropdown"
@@ -302,35 +298,35 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 Student Life
-              </Link>
+              </StyledNavLink>
               <ul
                 className="dropdown-menu"
                 aria-labelledby="studentLifeDropdown"
               >
                 <li>
-                  <Link className="dropdown-item" to="/Facilities">
+                  <StyledNavLink  className="dropdown-item" to="/Facilities">
                     Facilities
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/Studentevents">
+                  <StyledNavLink  className="dropdown-item" to="/Studentevents">
                     Student Events
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="#high-school">
+                  <StyledNavLink  className="dropdown-item" to="#high-school">
                     High School
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/Faqs">
+                  <StyledNavLink  className="dropdown-item" to="/Faqs">
                     FAQs
-                  </Link>
+                  </StyledNavLink>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <Link
+              <StyledNavLink 
                 className="nav-link dropdown-toggle text-dark"
                 to="#"
                 id="newsEventsDropdown"
@@ -339,35 +335,44 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 News And Events
-              </Link>
+              </StyledNavLink>
               <ul
                 className="dropdown-menu"
                 aria-labelledby="newsEventsDropdown"
               >
                 <li>
-                  <Link className="dropdown-item" to="/Schoolnews">
+                  <StyledNavLink  className="dropdown-item" to="/Schoolnews">
                     School News
-                  </Link>
+                  </StyledNavLink>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/StudentCalender">
+                  <StyledNavLink  className="dropdown-item" to="/StudentCalender">
                     Events Calendar
-                  </Link>
+                  </StyledNavLink>
                 </li>
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-dark" to="/ContactUs">
+              <StyledNavLink  className="nav-link text-dark" to="/ContactUs">
                 Contact
-              </Link>
+              </StyledNavLink>
             </li>
             <li className="nav-item">
-                  <button
-                    className="btn btn-outline-primary"
-                    onClick={isLoggedIn ? handleLogout : handleSignupClick} 
-                  >
-                    {isLoggedIn ? "Logout" : "Signup"} 
-                  </button>
+            {isLoggedIn ? (
+            <button
+              className="btn btn-outline-danger"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              className="btn btn-outline-primary"
+              onClick={handleLoginClick}
+            >
+              Login
+            </button>
+          )}
             </li>
 
 
@@ -376,7 +381,7 @@ const Navbar = () => {
       </nav>
 
      
-      {isSignupVisible && (
+      {/* {isSignupVisible && (
         <FormContainer className="mt-2">
           <form id="signupForm" onSubmit={handleSubmit}>
             <Title>Signup Form</Title>
@@ -416,15 +421,14 @@ const Navbar = () => {
             </StyledButton>
             <p>
               Already have an account?{" "}
-              <Link to="#" onClick={handleLoginClick}>
+              <StyledNavLink  to="#" onClick={handleLoginClick}>
                 Login here
-              </Link>
+              </StyledNavLink>
             </p>
           </form>
         </FormContainer>
-      )}
+      )} */}
 
-      {/* Login Form */}
       {isLoginVisible && (
         <FormContainer className="mt-2">
           <form id="loginForm" onSubmit={handleSubmit}>
@@ -450,15 +454,6 @@ const Navbar = () => {
               />
             </FormGroup>
             <StyledButton type="submit">Login</StyledButton>
-            <StyledButton
-              type="button"
-              onClick={() => {
-                setIsSignupVisible(true);
-                setIsLoginVisible(false);
-              }}
-            >
-              Back to Signup
-            </StyledButton>
             <StyledButton type="button"  onClick={() => {setIsLoginVisible(false)}}>
               Close
             </StyledButton>

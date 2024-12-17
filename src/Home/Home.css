@@ -116,16 +116,52 @@ section {
 
 .content h1 {
   font-family: "Comfortaa", sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem); /* This ensures responsiveness */
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 1px;
   margin-bottom: 36px;
   color: #fff;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  animation: reveal-text 4s steps(35) forwards; /* Adjust steps based on text length */
+}
+
+/* Keyframe for the animation */
+@keyframes reveal-text {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Make the animation responsive: Adjust font size for specific screen sizes if needed */
+@media (min-width: 768px) {
+  .content h1 {
+    font-size: 3rem; /* Larger font size for tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .content h1 {
+    font-size: 2.3rem; 
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .content h1 {
+    font-size: 4vw; 
+    margin-bottom: 9px;
+  }
 }
 
 .content p {
-  font-size: clamp(0.9rem, 3vw, 1.25rem);
+  font-size: larger;
   font-weight: 300;
   line-height: 1.5;
   margin-bottom: 30px;
@@ -193,3 +229,38 @@ section {
     height: 390px; /* Adjust height for smaller screens */
   }
 }
+.A {
+  font-size: 2rem; /* Default font size */
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  animation: reveal-text 4s steps(35) forwards; /* Adjust the number of steps based on text length */
+}
+.A {
+  font-size: 4vw; /* Use viewport width for dynamic sizing */
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  animation: reveal-text 4s steps(35) forwards; /* Adjust steps based on text length */
+  margin: 0 auto; /* Center the text horizontally */
+}
+
+@keyframes reveal-text {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+
+

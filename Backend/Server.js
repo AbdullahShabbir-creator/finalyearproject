@@ -25,49 +25,49 @@ mongoose
   });
 
 // Signup route
-app.post("/api/signup", async (req, res) => {
-  const { email, password, username } = req.body;
+// app.post("/api/signup", async (req, res) => {
+//   const { email, password, username } = req.body;
 
-  try {
-    // Check if all fields are provided
-    if (!email || !password || !username) {
-      return res.status(400).json({ error: "All fields are required" });
-    }
+//   try {
+//     // Check if all fields are provided
+//     if (!email || !password || !username) {
+//       return res.status(400).json({ error: "All fields are required" });
+//     }
 
-    // Check for existing user by email
-    const existingUserByEmail = await User.findOne({ email });
-    if (existingUserByEmail) {
-      return res.status(400).json({ error: "Email already in use" });
-    }
+//     // Check for existing user by email
+//     const existingUserByEmail = await User.findOne({ email });
+//     if (existingUserByEmail) {
+//       return res.status(400).json({ error: "Email already in use" });
+//     }
 
-    // Check for existing user by username
-    const existingUserByUsername = await User.findOne({ username });
-    if (existingUserByUsername) {
-      return res.status(400).json({ error: "Username already in use" });
-    }
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    // Create a new user
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-    });
-    // Save the user to the database
-    await newUser.save();
-    res.status(201).json({ message: "User created successfully" });
-  } catch (error) {
-    console.error("Signup error:", error);
-    // Handle duplicate key error
-    if (error.code === 11000) {
-      return res
-        .status(400)
-        .json({ error: "Email or username already in use" });
-    }
-    // Generic error message
-    res.status(500).json({ error: "An error occurred while signing up" });
-  }
-});
+//     // Check for existing user by username
+//     const existingUserByUsername = await User.findOne({ username });
+//     if (existingUserByUsername) {
+//       return res.status(400).json({ error: "Username already in use" });
+//     }
+//     // Hash the password
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     // Create a new user
+//     const newUser = new User({
+//       username,
+//       email,
+//       password: hashedPassword,
+//     });
+//     // Save the user to the database
+//     await newUser.save();
+//     res.status(201).json({ message: "User created successfully" });
+//   } catch (error) {
+//     console.error("Signup error:", error);
+//     // Handle duplicate key error
+//     if (error.code === 11000) {
+//       return res
+//         .status(400)
+//         .json({ error: "Email or username already in use" });
+//     }
+//     // Generic error message
+//     res.status(500).json({ error: "An error occurred while signing up" });
+//   }
+// });
 
 // Login route
 app.post("/api/login", async (req, res) => {

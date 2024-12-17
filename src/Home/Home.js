@@ -8,7 +8,7 @@ const Home = () => {
  
       <section>
         <div className="content mt-4">
-          <h1>Let's Explore The World Together!</h1>
+        <h1 class="A">Let's Explore The World Together!</h1>
           <p>
                "At Asif Public School, we’re committed to shaping the future through modern education. Our innovative courses, including cutting-edge AI programs, empower students to explore new technologies and ideas, preparing them to thrive in a rapidly changing world. Join us in fostering creativity, critical thinking, and a passion for learning!"
           </p>
