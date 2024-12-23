@@ -20,6 +20,7 @@ import Studentevents from "./Studentevent/Studentevents";
 import EducationCards from "./CurrculimOverview/CurrculimOverview";
 import Schoolnews from "./SchoolNew/Schoolnews";
 import StudentCalender from "./Event Calender/EventCalender"
+import Login from "./Register/LoginAD"
 
 const Layout = ({ children }) => (
   <>
@@ -72,6 +73,17 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Layout>
+                <Login/>
+              </Layout>
+            </>
+          }
+        />
+       
         <Route
           path="/Studentevents"
           element={

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; // Make sure to import useState
 import { Link } from "react-router-dom";
-import "./Admissionform.css"
+import "./Admissionform.css";
+
 const Admissionforms = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,6 +23,10 @@ const Admissionforms = () => {
     medicalInfo: "",
     additionalNotes: "",
   });
+
+  // Add state for loading and error
+  const [loading, setLoading] = useState(false); // loading state
+  const [error, setError] = useState(null); // error state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,12 +56,11 @@ const Admissionforms = () => {
   
       const result = await response.json();
       console.log("Form submitted successfully:", result);
-      alert("Data Submitted ")
+      alert("Data Submitted");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
-
   return (
     <>
       <div className="m-5 text-center">
@@ -78,6 +82,7 @@ const Admissionforms = () => {
             required
             className="short-input"
           />
+            {error && <div className="error-message">{error}</div>} 
         </div>
         <div className="form-group">
           <label>Last Name:</label>
@@ -263,10 +268,10 @@ const Admissionforms = () => {
             placeholder="Additional information"
           ></textarea>
         </div>
-
-        <button type="submit" className="submit-button">
-          Submit
+        <button type="submit" className="submit-button" disabled={loading}>
+          {loading ? "Submitting..." : "Submit"}
         </button>
+       
       </form>
     </>
   );

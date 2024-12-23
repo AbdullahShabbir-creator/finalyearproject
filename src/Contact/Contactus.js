@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 function Contactus() {
   const hours = [
-    { day: "Mon", time: "8:00 - 8:40" },
-    { day: "Tue", time: "8:45 - 9:30" },
-    { day: "Wed", time: "8:00 - 8:40" },
-    { day: "Thu", time: "8:00 - 8:40" },
-    { day: "Fri", time: "8:45 - 9:30" },
+    { day: "Mon", time: "8:00am - 1:40pm" },
+    { day: "Tue", time: "8:00am - 1:40pm" },
+    { day: "Wed", time: "8:00am - 1:40pm" },
+    { day: "Thu", time: "8:00am - 1:40pm"},
+    { day: "Fri", time: "8:00am - 1:00pm" },
   ];
 
   return (
@@ -32,7 +32,7 @@ function Contactus() {
             administrators, coordinators, and higher management.
           </p>
           <h4 className="mt-4">School Info:</h4>
-          <Link to="/" className="text-decoration-none text-info">
+          <Link to="" className="text-decoration-none text-info">
             J5VF+V2X, Ali Pur, Islamabad, Islamabad Capital Territory
           </Link>
         </div>

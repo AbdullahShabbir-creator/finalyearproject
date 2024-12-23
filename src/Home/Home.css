@@ -129,7 +129,6 @@ section {
   animation: reveal-text 4s steps(35) forwards; /* Adjust steps based on text length */
 }
 
-/* Keyframe for the animation */
 @keyframes reveal-text {
   0% {
     width: 0;
@@ -139,7 +138,6 @@ section {
   }
 }
 
-/* Make the animation responsive: Adjust font size for specific screen sizes if needed */
 @media (min-width: 768px) {
   .content h1 {
     font-size: 3rem; /* Larger font size for tablets */
