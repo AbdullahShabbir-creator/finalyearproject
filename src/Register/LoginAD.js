@@ -1,128 +1,66 @@
-import React, { useState } from "react";
-import "./LoginAD.css"; // Import custom styles
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
+import './LoginAD.css';
 
-const Login = () => {
-  // Directly using separate state variables for email and password
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isFormVisible, setIsFormVisible] = useState(true); // State to control visibility of login form
-
-  // Handle email input change
-  const handleEmailChange = (e) => {
-    setLoginEmail(e.target.value);
-  };
-
-  // Handle password input change
-  const handlePasswordChange = (e) => {
-    setLoginPassword(e.target.value);
-  };
-
-  // Handle form submission
+const LoginAD = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const loginData = {
-      email: loginEmail, // Use the loginEmail state
-      password: loginPassword, // Use the loginPassword state
-    };
-
+  
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password,
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to login");
-      }
-
-      const result = await response.json();
-      console.log("Login successful:", result);
-
-      // Store the token in localStorage
-      localStorage.setItem("authToken", result.token);
-
-      // Optionally redirect user to dashboard or another protected route
-      alert("Login successful!");
-      setIsLoggedIn(true); // Set the logged-in state to true
-
-    } catch (error) {
-      console.error("Error logging in:", error);
-      alert("Login failed, please try again.");
+  
+      // Save token in localStorage
+      localStorage.setItem('token', response.data.token);
+  
+      // Redirect user to the homepage or a protected route
+      navigate('/');  // Or any route after login
+    } catch (err) {
+      setError(err.response?.data?.message || 'Something went wrong');
     }
   };
-
-  // Handle logout
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    alert("You have been logged out!");
-  };
-
-  // Close the login form
-  const handleCloseForm = () => {
-    setIsFormVisible(false);
-  };
-
+  
   return (
-    <div className={`login-container ${isLoggedIn ? "logged-in" : ""}`}>
-      {isFormVisible && (
-        <div className="login-form-container">
-          {!isLoggedIn ? (
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="loginEmail" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="loginEmail"
-                  name="loginEmail"
-                  className="form-input"
-                  value={loginEmail} // Directly using loginEmail state
-                  onChange={handleEmailChange} // Handle email change
-                  required
-                  placeholder="Enter your email"
-                />
-              </div>
+    <div className="form-container">
+      <div className="form-box">
+        <h2 className="form-title">Login</h2>
+        <form className="form-content" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="email"
+              className="form-input"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-input"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="form-button">Login</button>
+        </form>
+        {error && <p className="form-error">{error}</p>}
 
-              <div className="form-group">
-                <label htmlFor="loginPassword" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="loginPassword"
-                  name="loginPassword"
-                  className="form-input"
-                  value={loginPassword} // Directly using loginPassword state
-                  onChange={handlePasswordChange} // Handle password change
-                  required
-                  placeholder="Enter your password"
-                />
-              </div>
-
-              <button type="submit" className="btn btn-submit">
-                Login
-              </button>
-            </form>
-          ) : (
-            <button className="btn btn-logout" onClick={handleLogout}>
-              Logout
-            </button>
-          )}
-
-          {/* Close Button to hide the Login form */}
-          <button className="btn-close" type="button" onClick={handleCloseForm}>
-            Close
-          </button>
-        </div>
-      )}
+        {/* Link to Signup */}
+        <p className="signup-link">
+          Don't have an account? <Link to="/signup">Sign Up</Link>
+        </p>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginAD;

@@ -17,7 +17,7 @@ const StyledNavLink = styled(Link)`
 `;
 
 const Navbar = () => {
-  
+  const isLoggedIn = localStorage.getItem('token') !== null; 
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light font-weight-bold">
@@ -218,11 +218,20 @@ const Navbar = () => {
                 Contact
               </StyledNavLink>
             </li>
-            <li className="nav-item">
-              <StyledNavLink  className="nav-link text-dark" to="/login">
-                Admin
-              </StyledNavLink>
-            </li>
+            {isLoggedIn ? (
+          <li className="nav-item">
+            <StyledNavLink className="nav-link text-dark" to="/logout">
+              Logout
+            </StyledNavLink>
+          </li>
+        ) : (
+          <li className="nav-item">
+            <StyledNavLink className="nav-link text-dark" to="/login">
+              Admin
+            </StyledNavLink>
+          </li>
+        )}
+           
           </ul>
         </div>
       </nav>   
