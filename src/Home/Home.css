@@ -1,4 +1,4 @@
-.Home {
+/* .Home {
   background-image: url("C:\Users\Dev\Desktop\Asif Public School\asif-public-school\src\Home\aboutBg.jpg");
   background-position: center;
   background-size: cover;
@@ -16,7 +16,9 @@
   text-align: center;
   color: rgb(255, 255, 255);
 }
-
+.A{
+  font-size: 40px;
+}
 @media (max-width: 768px) {
   .Home {
     height: 400px;
@@ -71,7 +73,7 @@
     animation-timing-function: ease-out;
     transform: translateY(0);
   }
-}
+} */
 
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@300;600&display=swap");
 
@@ -140,13 +142,13 @@ section {
 
 @media (min-width: 768px) {
   .content h1 {
-    font-size: 3rem; /* Larger font size for tablets */
+    font-size: 1.2rem; /* Larger font size for tablets */
   }
 }
 
 @media (min-width: 1024px) {
   .content h1 {
-    font-size: 2.3rem; 
+    font-size: 2.1rem; 
   }
   
 }
@@ -227,17 +229,7 @@ section {
     height: 390px; /* Adjust height for smaller screens */
   }
 }
-.A {
-  font-size: 2rem; /* Default font size */
-  font-weight: bold;
-  text-align: center;
-  color: #333;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-  animation: reveal-text 4s steps(35) forwards; /* Adjust the number of steps based on text length */
-}
+/*  */
 .A {
   font-size: 4vw; /* Use viewport width for dynamic sizing */
   font-weight: bold;
