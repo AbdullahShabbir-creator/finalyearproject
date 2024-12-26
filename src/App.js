@@ -21,7 +21,7 @@ import StudentCalender from "./Event Calender/EventCalender";
 import LoginAD from "./Register/LoginAD";
 import SignUp from "./Register/SignUp";
 import Logout from "./Register/Logout";
-
+import Fees from "./FeeStucture/Fees"
 const Layout = ({ children }) => (
   <>
     <Navbar />
@@ -34,7 +34,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Routes */}
+    
         <Route path="/" element={<>
               <Navbar />
               <Home />
@@ -56,8 +56,9 @@ function App() {
         <Route path="/ContactUs" element={<Layout><Contactus /></Layout>} />
         <Route path="/Admissionprocedure" element={<Layout><Admissionprocedure /></Layout>} />
         <Route path="/Faqs" element={<Layout><Faqs /></Layout>} />
+        <Route path="/Fees" element={<Layout><Fees /></Layout>} />
 
-        {/* Authentication Routes */}
+    
         <Route path="/login" element={<Layout><LoginAD /></Layout>} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/logout" element={<Logout />} />

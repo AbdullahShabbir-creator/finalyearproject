@@ -143,7 +143,7 @@ const Navbar = () => {
                   </StyledNavLink>
                 </li>
                 <li>
-                  <StyledNavLink  className="dropdown-item" to="/">
+                  <StyledNavLink  className="dropdown-item" to="/Fees">
                     Fees and Scholarships
                   </StyledNavLink>
                 </li>

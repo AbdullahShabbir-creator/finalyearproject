@@ -25,8 +25,8 @@ const Admissionforms = () => {
   });
 
   // Add state for loading and error
-  const [loading, setLoading] = useState(false); // loading state
-  const [error, setError] = useState(null); // error state
+  const [loading] = useState(false); // loading state
+  const [error] = useState(null); // error state
 
   const handleChange = (e) => {
     const { name, value } = e.target;

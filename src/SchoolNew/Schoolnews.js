@@ -9,7 +9,7 @@ function Schoolnews() {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfF7QCABEMDG3AQULzpkpEOjauPTyivJ7waAPLx_DWp3biTbUhpVU01kQy2OPHTmhf8yI&usqp=CAU",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34bmU4ZOla-EDKG_oNMVbN9UM4-WTwhz0yRUl_901fkxAZSKhYd_NjliuHrhFKUL3Cr4&usqp=CAU",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCuTFr2l8QT9iyjWKU1Xzvh1KqkW1xnAaVlQ3bA6QFUJqSP2bMLBCpN7vh6JaIQzQHoRk&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmASbjbaTfnwJAIGq5wdcrEzTO5jYrfd-iItOHtdNmk3X3MX7sLoba5dl9D6lwRLyxhkI&usqp=CAU",
+        "https://pub-94535a797e114688813de01f0cd4d531.r2.dev/ipsc/2024/10/20240827-120333-768x469.webp",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTqD8mEhNSoHRJ-jr1MKi4cQkH3_DBaNBROw&s"
     ];
 

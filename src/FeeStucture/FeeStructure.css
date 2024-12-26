@@ -1,0 +1,60 @@
+/* FeeStructure.css */
+
+/* Styling for the table container */
+.fee-table__container {
+    background-color: #ffffffea;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* margin-left:30px; */
+    /* max-width: 95%; */
+    opacity: 1;
+  }
+  
+  /* Table styling */
+  .fee-table__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .fee-table__table th,
+  .fee-table__table td {
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    vertical-align: middle; /* Ensures alignment of text */
+  }
+  
+  .fee-table__table th {
+    background-color:#002147;
+    color: #fff;
+    font-weight: bold;
+  }
+  .fee-table__fade-in{
+    color:#002652;
+  }
+  .fee-table__table tr {
+    background-color: #f9f9f9;
+    font-size: small;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .fee-table__table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Ensure the text fits on the same line */
+  .fee-table__table td {
+    white-space: nowrap; /* Prevents text from breaking into a new line */
+    text-overflow: ellipsis; /* Adds ellipsis if content overflows */
+    overflow: hidden;
+  }
+  
+  /* Responsiveness for smaller screens */
+  @media (max-width: 768px) {
+    .fee-table__table th, .fee-table__table td {
+      padding: 8px 12px;
+    }
+  }
+ 
