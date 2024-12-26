@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 function Admissionprocedure() {
   return (
-    <div>
+    <div className='Admissionprocedure'>
       <div className='container mt-4'>
         <h3 className='text-primary text-center mt-3'>Admission Procedure</h3>
         <ul className='list-unstyled mt-4'>

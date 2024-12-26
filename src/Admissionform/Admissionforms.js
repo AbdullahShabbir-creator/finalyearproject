@@ -25,8 +25,8 @@ const Admissionforms = () => {
   });
 
   // Add state for loading and error
-  const [loading] = useState(false); // loading state
-  const [error] = useState(null); // error state
+  const [loading, setLoading] = useState(false); // loading state
+  const [error, setError] = useState(null); // error state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,10 +39,11 @@ const Admissionforms = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    console.log("Form Data Submitted:", formData); // Debugging line
+    setLoading(true);  // Start loading state
+    setError(null);    // Clear any previous error
   
     try {
-      const response = await fetch("http://localhost:5000/api/admissions", {
+      const response = await fetch("http://localhost:5000/api/admission", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,8 +60,12 @@ const Admissionforms = () => {
       alert("Data Submitted");
     } catch (error) {
       console.error("Error submitting form:", error);
+      setError(error.message);  // Set the error message
+    } finally {
+      setLoading(false);  // Stop loading state
     }
   };
+
   return (
     <>
       <div className="m-5 text-center">
@@ -82,7 +87,7 @@ const Admissionforms = () => {
             required
             className="short-input"
           />
-            {error && <div className="error-message">{error}</div>} 
+          {error && <div className="error-message">{error}</div>} 
         </div>
         <div className="form-group">
           <label>Last Name:</label>
@@ -268,10 +273,11 @@ const Admissionforms = () => {
             placeholder="Additional information"
           ></textarea>
         </div>
-        <button type="submit" className="submit-button" disabled={loading}>
+        <div className=" text-center">
+        <button type="submit" className="submit-button col-2  " disabled={loading}>
           {loading ? "Submitting..." : "Submit"}
         </button>
-       
+        </div>
       </form>
     </>
   );

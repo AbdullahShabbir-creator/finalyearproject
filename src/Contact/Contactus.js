@@ -1,65 +1,69 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Contactus() {
-  // Function to load hours from localStorage or use default values if none are found
-  const loadHoursFromLocalStorage = () => {
-    const savedHours = localStorage.getItem("hours");
-    return savedHours ? JSON.parse(savedHours) : [
-      { day: "Mon", time: "8:00am - 1:40pm" },
-      { day: "Tue", time: "8:00am - 1:40pm" },
-      { day: "Wed", time: "8:00am - 1:40pm" },
-      { day: "Thu", time: "8:00am - 1:40pm" },
-      { day: "Fri", time: "8:00am - 1:00pm" },
-    ];
-  };
-
-  // Load the hours from localStorage when the component mounts
-  const [hours, setHours] = useState(loadHoursFromLocalStorage());
-
+  const [hours, setHours] = useState([]);
+  const [error, setError] = useState('');
   const token = localStorage.getItem("token");
   const isAuthenticated = !!token;
 
-  // Save the updated hours to localStorage
-  const saveHoursToLocalStorage = (updatedHours) => {
-    localStorage.setItem("hours", JSON.stringify(updatedHours));
-  };
-
-  // Delete hour function
-  const deleteHour = (index) => {
-    const updatedHours = hours.filter((_, i) => i !== index);
-    setHours(updatedHours); // Update state to re-render component
-    saveHoursToLocalStorage(updatedHours); // Save updated hours to localStorage
-  };
-
-  // Edit hour function
-  const editHour = (index, newTime) => {
-    if (newTime) {
-      const updatedHours = hours.map((entry, i) =>
-        i === index ? { ...entry, time: newTime } : entry
-      );
-      setHours(updatedHours); // Update state to re-render component
-      saveHoursToLocalStorage(updatedHours); // Save updated hours to localStorage
-    }
-  };
-
-  // Add new hour function
-  const addHour = () => {
-    const day = prompt("Enter the day (e.g., Mon, Tue, etc.):");
-    const time = prompt("Enter the time (e.g., 8:00am - 1:40pm):");
-    
-    if (day && time) {
-      const newHour = { day, time };
-      const updatedHours = [...hours, newHour];
-      setHours(updatedHours); // Update state to re-render component
-      saveHoursToLocalStorage(updatedHours); // Save updated hours to localStorage
+  // Function to fetch hours from the backend
+  const fetchWorkingHours = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/workinghours');
+      if (!response.ok) {
+        throw new Error('Failed to fetch working hours');
+      }
+      const data = await response.json();
+      setHours(data); // Set the data to state
+    } catch (error) {
+      setError('Error fetching working hours');
+      console.error(error);
     }
   };
 
   useEffect(() => {
-    // Ensure hours are loaded from localStorage on initial render
-    setHours(loadHoursFromLocalStorage());
-  }, []); // Empty dependency array ensures this effect runs once when the component mounts
+    fetchWorkingHours(); // Fetch hours when the component mounts
+  }, []);
+
+  // Edit hour function
+  const editHour = (id, newTime) => {
+    axios.put(`/api/workinghours/${id}`, { time: newTime })
+      .then(() => {
+        setHours(hours.map(hour => hour._id === id ? { ...hour, time: newTime } : hour)); // Update state with new time
+      })
+      .catch((error) => {
+        console.error('Error editing hour:', error);
+      });
+  };
+
+  // Delete hour function
+  const deleteHour = (id) => {
+    axios.delete(`/api/workinghours/${id}`)
+      .then(() => {
+        setHours(hours.filter(hour => hour._id !== id)); // Update state to remove the deleted hour
+      })
+      .catch((error) => {
+        console.error("Error deleting hour:", error);
+      });
+  };
+
+  // Add hour function
+  const addHour = () => {
+    const day = prompt("Enter the day (e.g., Mon, Tue, etc.):");
+    const time = prompt("Enter the time (e.g., 8:00am - 1:40pm):");
+
+    if (day && time) {
+      const newHour = { day, time };
+      axios.post('http://localhost:5000/api/workinghours', newHour)
+        .then((response) => {
+          setHours([...hours, response.data]); // Add the new hour to the list
+        })
+        .catch((error) => {
+          console.error('Error adding hour:', error);
+        });
+    }
+  };
 
   return (
     <div className="container mt-5">
@@ -74,49 +78,47 @@ function Contactus() {
         </div>
         <div className="col-md-4 mb-4">
           <h3 className="text-primary">Welcome to Asifian Family</h3>
-          <Link to="tel:+923335223170" className="text-decoration-none">
-            <h5 className="text-success">+92-333-5223170</h5>
-          </Link>
+          <h5 className="text-success">+92-333-5223170</h5>
           <p>
             Educated and experienced teachers familiar with the best practices
             in childhood education. Experienced, knowledgeable, and approachable
             administrators, coordinators, and higher management.
           </p>
           <h4 className="mt-4">School Info:</h4>
-          <Link to="" className="text-decoration-none text-info">
-            J5VF+V2X, Ali Pur, Islamabad, Islamabad Capital Territory
-          </Link>
+          <p>J5VF+V2X, Ali Pur, Islamabad, Islamabad Capital Territory</p>
         </div>
         <div className="col-md-4">
           <h4 className="mt-4 text-success">Working Hours:</h4>
+          {error && <p className="text-danger">{error}</p>}
           <ul className="list-group">
-            {hours.map((entry, index) => (
-              <li
-                key={index}
-                className="list-group-item d-flex justify-content-between align-items-center"
-              >
-                {entry.day}
-                <span>{entry.time}</span>
-                {isAuthenticated && (
-                  <div>
-                    <button
-                      className="btn btn-sm btn-warning mx-2"
-                      onClick={() =>
-                        editHour(index, prompt("Enter new time for " + entry.day))
-                      }
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-sm btn-danger"
-                      onClick={() => deleteHour(index)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )}
-              </li>
-            ))}
+            {hours.length > 0 ? (
+              hours.map((entry) => (
+                <li key={entry._id} className="list-group-item d-flex justify-content-between align-items-center">
+                  {entry.day}
+                  <span>{entry.time}</span>
+                  {isAuthenticated && (
+                    <div>
+                      <button
+                        className="btn btn-sm btn-warning mx-2"
+                        onClick={() =>
+                          editHour(entry._id, prompt("Enter new time for " + entry.day))
+                        }
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => deleteHour(entry._id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                </li>
+              ))
+            ) : (
+              <li className="list-group-item">No working hours available</li>
+            )}
           </ul>
           {isAuthenticated && (
             <button className="btn btn-sm btn-success mt-3" onClick={addHour}>
