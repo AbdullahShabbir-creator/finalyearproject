@@ -27,7 +27,7 @@ const Admissionforms = () => {
   // Add state for loading and error
   const [loading, setLoading] = useState(false); // loading state
   const [error, setError] = useState(null); // error state
-
+  const [submittedData, setSubmittedData] = useState(null); 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -38,10 +38,10 @@ const Admissionforms = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     setLoading(true);
     setError(null);
-  
+
     try {
       const response = await fetch("http://localhost:5000/api/admission", {
         method: "POST",
@@ -50,14 +50,17 @@ const Admissionforms = () => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Failed to submit admission form");
       }
-  
+
       const result = await response.json();
       console.log("Form submitted successfully:", result);
+
+      // Save the submitted data
+      setSubmittedData(formData);
       alert("Data Submitted");
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -66,7 +69,15 @@ const Admissionforms = () => {
       setLoading(false);
     }
   };
-  
+  const handlePrint = () => {
+    const printContent = document.getElementById("admission-form-data");
+    const printWindow = window.open("", "", "height=400,width=800");
+    printWindow.document.write("<html><head><title>Admission Form</title></head><body>");
+    printWindow.document.write(printContent.innerHTML);
+    printWindow.document.write("</body></html>");
+    printWindow.document.close();
+    printWindow.print();
+  };
   return (
     <>
       <div className="m-5 text-center">
@@ -75,7 +86,7 @@ const Admissionforms = () => {
           Click to Check Admission Procedure!
         </Link>
       </div>
-
+      {!submittedData ? (
       <form className="admission-form" onSubmit={handleSubmit}>
         <h2 className="text-center">Admission Form</h2>
         <div className="form-group">
@@ -280,8 +291,92 @@ const Admissionforms = () => {
         </button>
         </div>
       </form>
+    ) : (
+        <div id="admission-form-data" className="admission-form-readonly">
+          <h2 className="text-center">Admission Form (Submitted)</h2>
+          <div className="form-group">
+            <label>First Name:</label>
+            <p>{submittedData.firstName}</p>
+          </div>
+          <div className="form-group">
+            <label>Last Name:</label>
+            <p>{submittedData.lastName}</p>
+          </div>
+          <div className="form-group">
+            <label>Class Applied For:</label>
+            <p>{submittedData.classAppliedFor}</p>
+          </div>
+          <div className="form-group">
+            <label>Age:</label>
+            <p>{submittedData.age}</p>
+          </div>
+          <div className="form-group">
+            <label>Gender:</label>
+            <p>{submittedData.gender}</p>
+          </div>
+          <div className="form-group">
+            <label>Date of Birth:</label>
+            <p>{submittedData.dob}</p>
+          </div>
+          <div className="form-group">
+            <label>Address:</label>
+            <p>{submittedData.address}</p>
+          </div>
+          <div className="form-group">
+            <label>City:</label>
+            <p>{submittedData.city}</p>
+          </div>
+          <div className="form-group">
+            <label>State:</label>
+            <p>{submittedData.state}</p>
+          </div>
+          <div className="form-group">
+            <label>Zip:</label>
+            <p>{submittedData.zip}</p>
+          </div>
+          <div className="form-group">
+            <label>Guardian Name:</label>
+            <p>{submittedData.guardianName}</p>
+          </div>
+          <div className="form-group">
+            <label>Contact Number:</label>
+            <p>{submittedData.contactNumber}</p>
+          </div>
+          <div className="form-group">
+            <label>Email:</label>
+            <p>{submittedData.email}</p>
+          </div>
+          <div className="form-group">
+            <label>Previous School:</label>
+            <p>{submittedData.previousSchool}</p>
+          </div>
+          <div className="form-group">
+            <label>Emergency Contact Name:</label>
+            <p>{submittedData.emergencyContact}</p>
+          </div>
+          <div className="form-group">
+            <label>Emergency Contact Number:</label>
+            <p>{submittedData.emergencyContactNumber}</p>
+          </div>
+          <div className="form-group">
+            <label>Medical Info:</label>
+            <p>{submittedData.medicalInfo}</p>
+          </div>
+          <div className="form-group">
+            <label>Additional Notes:</label>
+            <p>{submittedData.additionalNotes}</p>
+          </div>
+
+          <div className="text-center">
+            <button onClick={handlePrint} className="print-button">
+              Print Form
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
+
 
 export default Admissionforms;
