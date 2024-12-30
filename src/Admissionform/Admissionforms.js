@@ -39,8 +39,8 @@ const Admissionforms = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    setLoading(true);  // Start loading state
-    setError(null);    // Clear any previous error
+    setLoading(true);
+    setError(null);
   
     try {
       const response = await fetch("http://localhost:5000/api/admission", {
@@ -48,11 +48,12 @@ const Admissionforms = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData), // Convert form data to JSON
+        body: JSON.stringify(formData),
       });
   
       if (!response.ok) {
-        throw new Error("Failed to submit admission form");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to submit admission form");
       }
   
       const result = await response.json();
@@ -60,12 +61,12 @@ const Admissionforms = () => {
       alert("Data Submitted");
     } catch (error) {
       console.error("Error submitting form:", error);
-      setError(error.message);  // Set the error message
+      setError(error.message);
     } finally {
-      setLoading(false);  // Stop loading state
+      setLoading(false);
     }
   };
-
+  
   return (
     <>
       <div className="m-5 text-center">

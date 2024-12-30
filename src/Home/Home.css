@@ -1,4 +1,4 @@
-/* .Home {
+.Home {
   background-image: url("C:\Users\Dev\Desktop\Asif Public School\asif-public-school\src\Home\aboutBg.jpg");
   background-position: center;
   background-size: cover;
@@ -73,7 +73,7 @@
     animation-timing-function: ease-out;
     transform: translateY(0);
   }
-} */
+}
 
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@300;600&display=swap");
 

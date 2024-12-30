@@ -1,0 +1,75 @@
+.admission-container {
+    padding-bottom: 13px;
+  }
+  
+  h3.text-primary {
+    color: #007bff;  /* Primary blue color */
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .step-header {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  ul.list-unstyled {   
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .step-number {
+    font-weight: bold;
+    color: #0056b3;  /* Darker blue for emphasis */
+  }
+  
+  .link-button {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid #007bff;
+    transition: all 0.3s ease;
+  }
+  
+  .link-button:hover {
+    color: #0056b3;
+    border-color: #0056b3;
+    transform: scale(1.05); /* Slight zoom effect on hover */
+  }
+  
+  ul.list-unstyled li {
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  ul.list-unstyled li:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    h3.text-primary {
+      font-size: 24px;
+    }
+  
+    .step-header {
+      font-size: 20px;
+    }
+  
+    .link-button {
+      font-size: 16px;
+    }
+  }
+  

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './LoginAD.css';
 
 const LoginAD = () => {
@@ -53,11 +53,9 @@ const LoginAD = () => {
           <button type="submit" className="form-button">Login</button>
         </form>
         {error && <p className="form-error">{error}</p>}
-
-        {/* Link to Signup */}
-        <p className="signup-link">
+        {/* <p className="signup-link">
           Don't have an account? <Link to="/signup">Sign Up</Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

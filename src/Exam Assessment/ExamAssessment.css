@@ -1,0 +1,106 @@
+/* General container styles */
+.exam-assessment {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f7fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  /* Heading styles */
+  .exam-assessment h1 {
+    text-align: center;
+    color: #2d3e50;
+    margin-bottom: 20px;
+  }
+  
+  /* Form elements */
+  label {
+    font-size: 16px;
+    color: #4f5d73;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  select,
+  input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Error message */
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  /* For the download PDF link */
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* For the message when no PDF is available */
+  .no-pdf-message {
+    font-size: 16px;
+    color: #8c8c8c;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* Section for file upload and download */
+  .section {
+    margin-top: 20px;
+  }
+  
+  .section h3 {
+    text-align: center;
+    color: #4f5d73;
+    margin-bottom: 15px;
+  }
+  
+  .section .file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .section .file-upload input {
+    max-width: 300px;
+    margin-bottom: 15px;
+  }
+  
+  .section .file-upload button {
+    max-width: 150px;
+    margin: 0 auto;
+  }
+  

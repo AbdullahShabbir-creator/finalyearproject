@@ -4,6 +4,7 @@ import ser2 from "./ser2.png";
 import ser3 from "./ser3.png";
 import ser4 from "./ser4.png";
 import ser5 from "./ser5.png";
+import "./service.css"
 export default function Services() {
   const services = [
     {

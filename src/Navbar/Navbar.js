@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
 const StyledNavLink = styled(Link)`
@@ -16,8 +17,16 @@ const StyledNavLink = styled(Link)`
   }
 `;
 
+
 const Navbar = () => {
   const isLoggedIn = localStorage.getItem('token') !== null; 
+  const navigate = useNavigate();
+  
+const handleLogout = () => {
+  localStorage.removeItem('token');
+  alert("Logout Succesfull ")
+  navigate('/login');
+};
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light font-weight-bold">
@@ -106,15 +115,11 @@ const Navbar = () => {
                   </StyledNavLink>
                 </li>
                 <li>
-                  <StyledNavLink  className="dropdown-item" to="/">
-                    Examinations and Assessments
+                  <StyledNavLink  className="dropdown-item" to="/ExamAssessment">
+                   Result
                   </StyledNavLink>
                 </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/">
-                    Special Programs
-                  </StyledNavLink>
-                </li>
+               
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -174,11 +179,8 @@ const Navbar = () => {
                     Student Events
                   </StyledNavLink>
                 </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="#high-school">
-                    High School
-                  </StyledNavLink>
-                </li>
+                
+          
                 <li>
                   <StyledNavLink  className="dropdown-item" to="/Faqs">
                     FAQs
@@ -203,7 +205,7 @@ const Navbar = () => {
               >
                 <li>
                   <StyledNavLink  className="dropdown-item" to="/Schoolnews">
-                    School News
+                    School Gallery
                   </StyledNavLink>
                 </li>
                 <li>
@@ -220,7 +222,7 @@ const Navbar = () => {
             </li>
             {isLoggedIn ? (
           <li className="nav-item">
-            <StyledNavLink className="nav-link text-dark" to="/logout">
+            <StyledNavLink className="nav-link text-dark" onClick={handleLogout}>
               Logout
             </StyledNavLink>
           </li>

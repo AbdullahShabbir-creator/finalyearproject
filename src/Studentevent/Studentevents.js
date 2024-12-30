@@ -151,10 +151,10 @@ const Studentevents = () => {
         {events.map((event) => (
           <div key={event._id} className="col-12 col-sm-6 col-md-4 d-flex mt-4">
             <div className="card shadow-lg text-center w-100 d-flex flex-column justify-content-between">
-              <div className="card-header text-white">{event.name}</div>
+              <div className="card-header text-primary"><h3>{event.name}</h3></div>
               <div className="card-body">
-                <h5 className="card-subtitle mb-3 text-muted">{event.date}</h5>
-                <p className="card-text">{event.location}</p>
+                {/* <h5 className="card-subtitle mb-3 text-muted">{event.date}</h5> */}
+                <p className="card-text"> <strong>{event.location}</strong></p>
                 <p className="card-text">{event.description}</p>
                 {isLoggedIn && (
                   <>
