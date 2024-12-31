@@ -70,7 +70,7 @@ export default function About() {
                 <p className="card-text text-muted">
                   "Don’t watch the clock; do what it does. Keep going." Join Us!
                 </p>
-                <a href="/" className="btn btn-primary">
+                <a href="/Admissionprocedure" className="btn btn-primary">
                   Explore More
                 </a>
               </div>

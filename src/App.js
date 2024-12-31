@@ -1,4 +1,5 @@
 import React from "react";
+import"./App.css";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom"; // Import useNavigate
 import Footer from "./Footer/Footer";
 import Navbar from "./Navbar/Navbar";

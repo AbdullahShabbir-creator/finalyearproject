@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const AdmissionFormSchema = new mongoose.Schema(
   {
+    misId: { type: String, required: true, unique: true }, // MIS ID field
     firstName: {
       type: String,
       required: true,
@@ -54,26 +55,26 @@ const AdmissionFormSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true, // Assuming you want unique email addresses
+      unique: true, 
     },
     previousSchool: {
       type: String,
       required: true,
     },
     emergencyContact: {
-      type: String,
+      type: Number,
       required: true,
     },
     emergencyContactNumber: {
       type: String,
       required: true,
     },
-    medicalInfo: {
-      type: String,
+    ObtainedMarks: {
+      type: Number,
       default: "", // Optional field for medical info
     },
-    additionalNotes: {
-      type: String,
+    TotalMarks: {
+      type: Number,
       default: "", // Optional field for additional notes
     },
   },

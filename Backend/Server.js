@@ -7,6 +7,8 @@ const admissionRoutes = require("./routes/admissionRoutes");
 const workingHoursRoutes = require('./routes/workingHours');
 const eventRoutes = require("./routes/eventRoutes");
 const examRoutes = require('./routes/examRoutes');
+const topStudentsRoutes = require('./routes/topStudentsRoutes');
+const cron = require('node-cron');  // Import node-cron for scheduling
 const path = require('path');  // Add this to handle file paths correctly
 const cors = require('cors');
 
@@ -34,6 +36,7 @@ app.use('/api/workinghours', workingHoursRoutes);
 app.use("/api", admissionRoutes);  // Admission routes
 app.use('/api/events', eventRoutes);
 app.use('/api/exams', examRoutes);
+app.use('/api', topStudentsRoutes);
 
 // Start the server and pass the HTTP server to WebSocket
 const server = app.listen(5000, () => {
@@ -54,4 +57,16 @@ wss.on('connection', (ws) => {
     });
   });
   ws.send('Connected to WebSocket');
+});
+
+// Add cron job to calculate and update top 20 students at midnight every day
+const { calculateTopStudents } = require('./controllers/topStudentsController');  // Import your function
+
+cron.schedule('0 0 * * *', async () => {  // This runs every day at midnight
+  try {
+    await calculateTopStudents();
+    console.log('Top 20 students updated successfully!');
+  } catch (error) {
+    console.error('Error updating top 20 students:', error);
+  }
 });

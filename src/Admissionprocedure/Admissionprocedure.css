@@ -1,75 +1,115 @@
-.admission-container {
-    padding-bottom: 13px;
+/* Admission Procedure Styles */
+.admission-procedure-container {
+  background: linear-gradient(to bottom right, #e3f2fd, #bbdefb, #90caf9);
+  min-height: 90vh;
+  padding: 40px 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.admission-procedure-container .procedure-title {
+  color: #1e88e5;
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.admission-procedure-container .procedure-list {
+  list-style: none;
+  padding: 0;
+}
+
+.admission-procedure-container .procedure-step {
+  background: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admission-procedure-container .procedure-step:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.admission-procedure-container .procedure-step-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a237e;
+}
+
+.admission-procedure-container .procedure-step-number {
+  display: inline-block;
+  background: #1e88e5;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.admission-procedure-container .procedure-link-button {
+  color: #1565c0;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid #1565c0;
+  transition: all 0.3s ease;
+}
+
+.admission-procedure-container .procedure-link-button:hover {
+  color: #0d47a1;
+  border-color: #0d47a1;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.admission-procedure-container .procedure-step-image {
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admission-procedure-container .procedure-step-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  h3.text-primary {
-    color: #007bff;  /* Primary blue color */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .admission-procedure-container .procedure-title {
     font-size: 28px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
-  
-  .step-header {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
+
+  .admission-procedure-container .procedure-step-header {
+    font-size: 20px;
   }
-  
-  ul.list-unstyled {   
-    font-size: 18px;
-    line-height: 1.6;
+
+  .admission-procedure-container .procedure-step-number {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
   }
-  
-  .step-number {
-    font-weight: bold;
-    color: #0056b3;  /* Darker blue for emphasis */
-  }
-  
-  .link-button {
-    color: #007bff;
-    font-weight: bold;
-    text-decoration: none;
-    border-bottom: 2px solid #007bff;
-    transition: all 0.3s ease;
-  }
-  
-  .link-button:hover {
-    color: #0056b3;
-    border-color: #0056b3;
-    transform: scale(1.05); /* Slight zoom effect on hover */
-  }
-  
-  ul.list-unstyled li {
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  ul.list-unstyled li:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-  }
-  
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  @media (max-width: 768px) {
-    h3.text-primary {
-      font-size: 24px;
-    }
-  
-    .step-header {
-      font-size: 20px;
-    }
-  
-    .link-button {
-      font-size: 16px;
-    }
-  }
-  
+}

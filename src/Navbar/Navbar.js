@@ -12,7 +12,7 @@ const StyledNavLink = styled(Link)`
   &:hover {
     // color:rgb(0, 128, 248); // Change text color on hover
     text-decoration: none; // Underline the text on hover
-    transform: scale(1.05); // Slightly enlarge the link on hover
+    transform: scale(1.01); // Slightly enlarge the link on hover
     // Subtle background effect
   }
 `;
@@ -81,7 +81,7 @@ const handleLogout = () => {
               <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
                 <li>
                   <StyledNavLink 
-                    className="dropdown-item text-dark"
+                    className="nav-link dropdown-item text-dark"
                     to="/VisionMissionGoals"
                   >
                     Vision And Mission
@@ -89,7 +89,7 @@ const handleLogout = () => {
                 </li>
                 <li>
                   <StyledNavLink 
-                    className="dropdown-item text-dark"
+                    className="nav-link dropdown-item text-dark"
                     to="/LeadingwithInnovation"
                   >
                     Leading with Innovation

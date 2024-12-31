@@ -1,8 +1,8 @@
-import React, { useState } from "react"; // Make sure to import useState
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Admissionform.css";
 
-const Admissionforms = () => {
+const AdmissionForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,363 +20,125 @@ const Admissionforms = () => {
     previousSchool: "",
     emergencyContact: "",
     emergencyContactNumber: "",
-    medicalInfo: "",
-    additionalNotes: "",
+    ObtainedMarks: "",
+    TotalMarks: "",
   });
 
-  // Add state for loading and error
-  const [loading, setLoading] = useState(false); // loading state
-  const [error, setError] = useState(null); // error state
-  const [submittedData, setSubmittedData] = useState(null); 
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [misId, setMisId] = useState("");
+  const [admissionDetails, setAdmissionDetails] = useState(null);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setLoading(true);
-    setError(null);
-
     try {
-      const response = await fetch("http://localhost:5000/api/admission", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to submit admission form");
-      }
-
-      const result = await response.json();
-      console.log("Form submitted successfully:", result);
-
-      // Save the submitted data
-      setSubmittedData(formData);
-      alert("Data Submitted");
+      const response = await axios.post("http://localhost:5000/api/admission", formData);
+      setSuccessMessage(`Form submitted successfully! Your MIS ID is: ${response.data.admission.misId}`);
+      alert(response.data.message);
+      setErrorMessage(""); // Clear any previous error
     } catch (error) {
-      console.error("Error submitting form:", error);
-      setError(error.message);
-    } finally {
-      setLoading(false);
+      console.error("Error:", error.response ? error.response.data : error.message);
+      setErrorMessage("There was an error submitting the form. Please try again.");
+      setSuccessMessage(""); // Clear any previous success message
     }
   };
-  const handlePrint = () => {
-    const printContent = document.getElementById("admission-form-data");
-    const printWindow = window.open("", "", "height=400,width=800");
-    printWindow.document.write("<html><head><title>Admission Form</title></head><body>");
-    printWindow.document.write(printContent.innerHTML);
-    printWindow.document.write("</body></html>");
-    printWindow.document.close();
-    printWindow.print();
+
+  // Function to fetch admission details by MIS ID
+  const handleTrackAdmission = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/admission/${misId}`);
+      setAdmissionDetails(response.data.admission);
+      setErrorMessage(""); // Clear any previous error
+  
+      // Assuming that the backend sends a status message like "In progress" or "Accepted"
+      if (response.data.admission.status === "inProgress") {
+        alert("Wait for the merit list, your admission is in process.");
+        setSuccessMessage("Your admission is in process. Wait for the merit list.");
+      } else if (response.data.admission.status === "accepted") {
+        alert("Congratulations! Your admission has been accepted.");
+        setSuccessMessage("Your admission has been accepted. Congratulations!");
+      }
+  
+    } catch (error) {
+      setAdmissionDetails(null);
+      setErrorMessage("No admission found for this MIS ID.");
+      alert("No admission found for this MIS ID.");
+    }
   };
+  
   return (
     <>
-      <div className="m-5 text-center">
-        <h2>Join Us For Better Future</h2>
-        <Link to="/Admissionprocedure">
-          Click to Check Admission Procedure!
-        </Link>
-      </div>
-      {!submittedData ? (
-      <form className="admission-form" onSubmit={handleSubmit}>
-        <h2 className="text-center">Admission Form</h2>
-        <div className="form-group">
-          <label>First Name:</label>
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-            className="short-input"
+       {/* <div class="d-flex justify-content-center align-items-center" style={{height: "250px", background:"transparent !important"}}>
+          <img
+            src="https://toppng.com/uploads/preview/admission-admission-open-vector-11562868301n1unaedgy7.png"
+            alt="Admission Form"
+            class="w-25"
           />
-          {error && <div className="error-message">{error}</div>} 
-        </div>
-        <div className="form-group">
-          <label>Last Name:</label>
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Class Applied For:</label>
-          <input
-            type="text"
-            name="classAppliedFor"
-            value={formData.classAppliedFor}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Age:</label>
-          <input
-            type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Gender:</label>
-          <select
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            required
-            className="short-input"
-          >
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Date of Birth:</label>
-          <input
-            type="date"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Address:</label>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-            className="short-input"
-            placeholder="Street Address"
-          />
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            required
-            className="short-input"
-            placeholder="City"
-          />
-          <input
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            required
-            className="short-input"
-            placeholder="State"
-          />
-          <input
-            type="text"
-            name="zip"
-            value={formData.zip}
-            onChange={handleChange}
-            required
-            className="short-input"
-            placeholder="Zip Code"
-          />
-        </div>
-        <div className="form-group">
-          <label>Parent/Guardian Name:</label>
-          <input
-            type="text"
-            name="guardianName"
-            value={formData.guardianName}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Contact Number:</label>
-          <input
-            type="tel"
-            name="contactNumber"
-            value={formData.contactNumber}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Previous School Name:</label>
-          <input
-            type="text"
-            name="previousSchool"
-            value={formData.previousSchool}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Emergency Contact Name:</label>
-          <input
-            type="text"
-            name="emergencyContact"
-            value={formData.emergencyContact}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Emergency Contact Number:</label>
-          <input
-            type="tel"
-            name="emergencyContactNumber"
-            value={formData.emergencyContactNumber}
-            onChange={handleChange}
-            required
-            className="short-input"
-          />
-        </div>
-        <div className="form-group">
-          <label>Medical Conditions/Allergies:</label>
-          <textarea
-            name="medicalInfo"
-            value={formData.medicalInfo}
-            onChange={handleChange}
-            className="short-input"
-            placeholder="Any known medical conditions or allergies"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label>Additional Notes:</label>
-          <textarea
-            name="additionalNotes"
-            value={formData.additionalNotes}
-            onChange={handleChange}
-            className="short-input"
-            placeholder="Additional information"
-          ></textarea>
-        </div>
-        <div className=" text-center">
-        <button type="submit" className="submit-button col-2  " disabled={loading}>
-          {loading ? "Submitting..." : "Submit"}
-        </button>
-        </div>
-      </form>
-    ) : (
-        <div id="admission-form-data" className="admission-form-readonly">
-          <h2 className="text-center">Admission Form (Submitted)</h2>
-          <div className="form-group">
-            <label>First Name:</label>
-            <p>{submittedData.firstName}</p>
-          </div>
-          <div className="form-group">
-            <label>Last Name:</label>
-            <p>{submittedData.lastName}</p>
-          </div>
-          <div className="form-group">
-            <label>Class Applied For:</label>
-            <p>{submittedData.classAppliedFor}</p>
-          </div>
-          <div className="form-group">
-            <label>Age:</label>
-            <p>{submittedData.age}</p>
-          </div>
-          <div className="form-group">
-            <label>Gender:</label>
-            <p>{submittedData.gender}</p>
-          </div>
-          <div className="form-group">
-            <label>Date of Birth:</label>
-            <p>{submittedData.dob}</p>
-          </div>
-          <div className="form-group">
-            <label>Address:</label>
-            <p>{submittedData.address}</p>
-          </div>
-          <div className="form-group">
-            <label>City:</label>
-            <p>{submittedData.city}</p>
-          </div>
-          <div className="form-group">
-            <label>State:</label>
-            <p>{submittedData.state}</p>
-          </div>
-          <div className="form-group">
-            <label>Zip:</label>
-            <p>{submittedData.zip}</p>
-          </div>
-          <div className="form-group">
-            <label>Guardian Name:</label>
-            <p>{submittedData.guardianName}</p>
-          </div>
-          <div className="form-group">
-            <label>Contact Number:</label>
-            <p>{submittedData.contactNumber}</p>
-          </div>
-          <div className="form-group">
-            <label>Email:</label>
-            <p>{submittedData.email}</p>
-          </div>
-          <div className="form-group">
-            <label>Previous School:</label>
-            <p>{submittedData.previousSchool}</p>
-          </div>
-          <div className="form-group">
-            <label>Emergency Contact Name:</label>
-            <p>{submittedData.emergencyContact}</p>
-          </div>
-          <div className="form-group">
-            <label>Emergency Contact Number:</label>
-            <p>{submittedData.emergencyContactNumber}</p>
-          </div>
-          <div className="form-group">
-            <label>Medical Info:</label>
-            <p>{submittedData.medicalInfo}</p>
-          </div>
-          <div className="form-group">
-            <label>Additional Notes:</label>
-            <p>{submittedData.additionalNotes}</p>
-          </div>
+        </div> */}
+    <div className="admission-form-container">
+      <div className="track-admission-section mb-5">
+        <h2 className="text-center text-success mb-5">For Admission Tracking and  Applying Online</h2>
+      <h5 className="track-admission-header">Want to Track Your Admission</h5>
+      <p className="m-0 text-danger">For Tracking process you must Fill Admission Form</p>
+        <input
+          type="text"
+          placeholder="Enter MIS ID to track"
+          value={misId}
+          onChange={(e) => setMisId(e.target.value)}
+           className=" mt-1"
+        />
+        <button className="btn btn-primary m-1" onClick={handleTrackAdmission}>Track Admission</button>
 
-          <div className="text-center">
-            <button onClick={handlePrint} className="print-button">
-              Print Form
-            </button>
+        {admissionDetails && (
+          <div className="admission-details">
+            <h4>Admission Details</h4>
+            <p>First Name: {admissionDetails.firstName}</p>
+            <p>Last Name: {admissionDetails.lastName}</p>
+            <p>Class Applied For: {admissionDetails.classAppliedFor}</p>
+            <p>Email: {admissionDetails.email}</p>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+
+      <h2 className="form-title">Admission Form</h2>
+      <form className="admission-form" onSubmit={handleSubmit}>
+        <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required />
+        <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required />
+        <input type="text" name="classAppliedFor" placeholder="Class Applied For" onChange={handleChange} required />
+        <input type="number" name="age" placeholder="Age" onChange={handleChange} required />
+        <select name="gender" onChange={handleChange} required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <input type="date" name="dob" onChange={handleChange} required />
+        <input type="text" name="address" placeholder="Address" onChange={handleChange} required />
+        <input type="text" name="city" placeholder="City" onChange={handleChange} required />
+        <input type="text" name="state" placeholder="State" onChange={handleChange} required />
+        <input type="text" name="zip" placeholder="ZIP Code" onChange={handleChange} required />
+        <input type="text" name="guardianName" placeholder="Guardian's Name" onChange={handleChange} required />
+        <input type="text" name="contactNumber" placeholder="Contact Number" onChange={handleChange} required />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+        <input type="text" name="previousSchool" placeholder="Previous School" onChange={handleChange} required />
+        <input type="number" name="emergencyContact" placeholder="Emergency Contact" onChange={handleChange} required />
+        <input type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number" onChange={handleChange} required />
+        <input type="number" name="ObtainedMarks" placeholder="Obtained Marks" onChange={handleChange} />
+        <input type="number" name="TotalMarks" placeholder="Total Marks" onChange={handleChange} />
+        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+        {successMessage && <p style={{ color: "green" }}>{errorMessage}</p>}
+        <button type="submit">Submit</button>
+      </form>
+    </div>
     </>
   );
 };
 
-
-export default Admissionforms;
+export default AdmissionForm;

@@ -6,3 +6,31 @@
   border: 3px solid red;
   border-radius: 40px;
 }
+
+/* Navbar with Gradient and Animation */
+.navbar {
+  background: linear-gradient(45deg, #f0f2f3, #e4b6f5);
+  /* color: white; */
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background 0.3s ease-in-out;
+}
+
+.navbar:hover {
+  background: linear-gradient(45deg, #8a7e8f, #2f80b6);
+}
+
+.navbar a {
+  /* color: white; */
+  padding: 1px 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #f1c40f;
+}
