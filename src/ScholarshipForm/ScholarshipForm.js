@@ -63,7 +63,7 @@ const ScholarshipForm = () => {
             value={formData.Misid}
             onChange={handleChange}
             required
-            className="form-input"
+            className="form-input2"
           />
         </div>
 
@@ -76,7 +76,7 @@ const ScholarshipForm = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="form-input"
+            className="form-input2"
           />
         </div>
 
@@ -89,7 +89,7 @@ const ScholarshipForm = () => {
             value={formData.className}
             onChange={handleChange}
             required
-            className="form-input"
+            className="form-input2"
           />
         </div>
 
@@ -102,7 +102,7 @@ const ScholarshipForm = () => {
             value={formData.Grade}
             onChange={handleChange}
             required
-            className="form-input"
+            className="form-input2"
             min="0"
           />
         </div>
@@ -116,7 +116,7 @@ const ScholarshipForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="form-input"
+            className="form-input2"
           />
         </div>
 
@@ -131,7 +131,7 @@ const ScholarshipForm = () => {
             required
             
             placeholder="Enter 10-digit phone number"
-            className="form-input"
+            className="form-input2"
           />
         </div>
 
@@ -143,7 +143,7 @@ const ScholarshipForm = () => {
             value={formData.scholarshipType}
             onChange={handleChange}
             required
-            className="form-input"
+            className="form-input2"
           >
             <option value="">Select Type</option>
             <option value="orphan">Orphan</option>

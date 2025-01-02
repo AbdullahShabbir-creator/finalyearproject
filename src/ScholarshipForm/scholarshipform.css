@@ -44,7 +44,7 @@
   }
   
   /* Input fields and select dropdown */
-  .form-input {
+  .form-input2 {
     width: 65%;
     padding: 12px 20px;
     border-radius: 8px;
@@ -55,7 +55,7 @@
   }
   
   /* Input focus effects */
-  .form-input:focus {
+  .form-input2:focus {
     border-color: #f76b8a;
     box-shadow: 0 0 10px rgba(255, 107, 138, 0.5);
     outline: none;
