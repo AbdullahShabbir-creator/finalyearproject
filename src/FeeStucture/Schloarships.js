@@ -1,5 +1,6 @@
 import React from 'react';
-
+// Correct way to import Link in React Router v6+
+import { Link } from 'react-router-dom';
 
 const ScholarshipAccordion = () => {
   
@@ -35,6 +36,7 @@ const ScholarshipAccordion = () => {
         </div>
         <div className="scholarship-content">
           <p>To care for students who are academically qualified and have serious financial problems, a 30% waiver on the monthly fee will be provided.</p>
+          <h6 className='text-center text-danger'>To Apply <Link to="/Scholarshipform"> <small>Click here</small> </Link></h6>
         </div>
       </div>
     </div>

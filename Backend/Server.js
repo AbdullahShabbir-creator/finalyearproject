@@ -21,7 +21,7 @@ dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-
+const scholarshipRoutes = require('./routes/scholarshipRoutes');
 // Serve uploaded files (PDFs)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -37,7 +37,7 @@ app.use("/api", admissionRoutes);  // Admission routes
 app.use('/api/events', eventRoutes);
 app.use('/api/exams', examRoutes);
 app.use('/api', topStudentsRoutes);
-
+app.use('/api/scholarship', scholarshipRoutes);
 // Start the server and pass the HTTP server to WebSocket
 const server = app.listen(5000, () => {
   console.log('Server running on port 5000');

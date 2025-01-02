@@ -1,115 +1,99 @@
-.admission-form-container {
-  width: 80%;
-  margin: 20px auto;
+.formapp{
+  background-image: url("https://media.istockphoto.com/id/2122148349/photo/writing-an-exam-at-the-university.jpg?s=1024x1024&w=is&k=20&c=bwAFK0JlurIPmkBpQcMTm6wkUSUMqHsTsS4jFh1cNng=");
+  background-repeat: repeat;
+  background-size: contain;
+  
   padding: 30px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 1s ease-in-out;
 }
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Form Title */
-.form-title {
-  text-align: center;
-  font-size: 2rem;
-  color: #34495e;
-  margin-bottom: 20px;
-}
-
-/* Label and Input Field Alignment */
-.admission-form label {
-  display: block;
-  font-size: 1.1rem;
-  color: #34495e;
-  margin-bottom: 5px;
-}
-
-.admission-form input,
-.admission-form select {
-  align-items: center;
-  width: 51%;
-  padding: 9px;
-  margin-bottom: 15px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
-  transition: all 0.3s ease-in-out;
-}
-
-.admission-form input:focus,
-.admission-form select:focus {
-  border-color: #3498db; /* Blue border on focus */
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-} 
-/* Button Styling */
-.admission-form button {
-  width: auto; /* Makes the button width fit content */
-  padding: 10px 20px; /* Smaller padding for a smaller button */
-  font-size: 1.1rem; /* Slightly smaller font size */
-  background: linear-gradient(45deg, #3498db, #2ecc71); /* Green to Blue */
+.admission-form-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #00bfae, #f76b8a);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   color: white;
+}
+
+
+
+.track-admission-section {
+  margin-bottom: 30px;
+}
+
+.track-input {
+  width: 70%;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.btn-track {
+  background-color: #f76b8a;
+  color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
-  display: block; /* Ensures it's a block-level element */
-  margin: 20px auto; /* Centers the button horizontally */
 }
 
-.admission-form {
-  text-align: center; /* Centers the contents of the form */
+.btn-track:hover {
+  background-color: #ff4f70;
 }
 
-
-.admission-form button:hover {
-  background: linear-gradient(45deg, #2ecc71, #3498db);
+.admission-form input, .admission-form select, .admission-form button {
+  width: 44%;
+  padding: 14px 20px 20px 20px;
+  margin: 10px 10px 10px 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
 }
 
-/* Success Message */
+input[type="text"], input[type="number"], input[type="email"], input[type="date"] {
+  background-color: #fff;
+  color: #333;
+}
+
+select {
+  background-color: #fff;
+}
+
+button.submit-btn {
+  background-color: #00bfae;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.submit-btn:hover {
+  background-color: #00a89f;
+}
+
+.success-message, .error-message {
+  text-align: center;
+  font-size: 16px;
+}
+
 .success-message {
   color: green;
-  font-size: 1.1rem;
-  text-align: center;
+}
+
+.error-message {
+  color: red;
+}
+
+.admission-details {
   margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-/* Small Input Fields with Label in Front */
-.input-group {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.input-group label {
-  flex-basis: 30%; /* Label takes 30% width */
-  color: #34495e;
-}
-
-
-
-/* Adjust for smaller screens */
-@media (max-width: 768px) {
-  .admission-form-container {
-    width: 90%;
-  }
-
-  .input-group {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .input-group label {
-    flex-basis: auto;
-    margin-bottom: 5px;
-  }
+.track-admission-header {
+  font-size: 20px;
+  margin-bottom: 10px;
 }

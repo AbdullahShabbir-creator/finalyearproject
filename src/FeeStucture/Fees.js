@@ -67,7 +67,7 @@ const FeeTable = () => {
       <ScholarshipAccordion />
       <h1 className="text-center fee-table__fade-in">Fee Structure</h1>
       <p className="text-center m-0 p-0" style={{ color: "#A9101A" }}>ASIF PUBLIC HIGH SCHOOL ISLAMABAD</p>
-      <p style={{ marginLeft: "18pc" }}>To ensure that no child misses the opportunity to study and excel in an extraordinary environment, APHSI offers <br /> financial assistance to all the deserving cases.</p>
+      <h6 className="scholarship-title text-center mb-4 text-danger">The following charges are payable at their designated times as applicable:</h6>
       <div className="table-responsive fee-table__fade-in">
         <table className="table table-bordered table-hover text-center fee-table__table">
           <thead>

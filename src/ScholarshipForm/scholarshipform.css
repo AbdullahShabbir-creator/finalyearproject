@@ -1,0 +1,100 @@
+/* ScholarshipForm.css */
+
+/* Container for the form */
+.unique-scholarship-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00bfae 0%, #f76b8a 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Title of the form */
+  .unique-form-title {
+    text-align: center;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    font-size: 28px;
+    margin-bottom: 30px;
+    animation: slideIn 1s ease-in-out;
+  }
+  
+  /* Form container */
+  .unique-scholarship-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Form group (for inputs and labels) */
+  .unique-form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 16px;
+    color: #fff;
+    display: block;
+    width: 30%;
+  }
+  
+  /* Input fields and select dropdown */
+  .form-input {
+    width: 65%;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+  }
+  
+  /* Input focus effects */
+  .form-input:focus {
+    border-color: #f76b8a;
+    box-shadow: 0 0 10px rgba(255, 107, 138, 0.5);
+    outline: none;
+  }
+  
+  /* Submit button */
+  button.unique-submit-btn {
+    background: linear-gradient(135deg, #f76b8a, #00bfae);
+    color: #fff;
+    font-size: 18px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button hover effect */
+  button.unique-submit-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #00bfae, #f76b8a);
+  }
+  
+  /* Button active effect */
+  button.unique-submit-btn:active {
+    transform: scale(1);
+    background: linear-gradient(135deg, #ff4e50, #ff6f61);
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  /* Slide-in animation for the title */
+  @keyframes slideIn {
+    0% { transform: translateY(-50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
