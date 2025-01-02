@@ -23,8 +23,9 @@ import LoginAD from "./Register/LoginAD";
 import SignUp from "./Register/SignUp";
 import Fees from "./FeeStucture/Fees";
 import ExamAssessment from "./Exam Assessment/Exam_Assessment";
-import Chatbot from "./Chatbot/Main1"; // Import Chatbot component
+import Chatbot from "./Chatbot/Main1"; 
 import ScholarshipForm from "./ScholarshipForm/ScholarshipForm"
+
 const Layout = ({ children }) => (
   <>
     <Navbar />

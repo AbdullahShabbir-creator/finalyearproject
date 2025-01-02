@@ -38,6 +38,8 @@ app.use('/api/events', eventRoutes);
 app.use('/api/exams', examRoutes);
 app.use('/api', topStudentsRoutes);
 app.use('/api/scholarship', scholarshipRoutes);
+
+
 // Start the server and pass the HTTP server to WebSocket
 const server = app.listen(5000, () => {
   console.log('Server running on port 5000');

@@ -1,0 +1,106 @@
+/* Unique class names and animations for Vision, Mission, Goals */
+
+.vision-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, rgba(0, 123, 255, 1) 0%, rgba(255, 0, 0, 1) 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    animation: slideIn 2s ease-out;
+  }
+  
+  /* Animation for card appearance */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Vision Card */
+  .vision-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  }
+  
+  .vision-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .vision-image {
+    border: 5px solid #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .vision-image:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Mission Card */
+  .mission-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #563f70, #54d45f);
+  }
+  
+  .mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mission-image {
+    border: 5px solid #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .mission-image:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Goals Card */
+  .goals-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #00c6ff, #95c5ff);
+  }
+  
+  .goals-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .goals-image {
+    border: 5px solid #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .goals-image:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Button Styling */
+  .explore-btn {
+    background-color: #ff5733;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .explore-btn:hover {
+    background-color: #c44d00;
+    transform: scale(1.05);
+  }
+  
