@@ -1,0 +1,88 @@
+/* Unique Card container */
+.leading-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+ 
+  
+  /* Unique Card body styles */
+  .leading-card-body {
+    background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Unique Title styling */
+  .leading-card-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e88e5;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  /* Unique Text styling */
+  .leading-card-text {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Lead text styling */
+  .leading-card-lead {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Unique List styling */
+  .leading-card-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .leading-card-list-item {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #555;
+    transition: color 0.3s ease;
+  }
+  
+  /* Strong text in list */
+  .leading-card-list-item strong {
+    color: #1e88e5;
+  }
+  
+  /* Hover effect on list items */
+  .leading-card-list-item:hover {
+    color: #0d47a1;
+  }
+  
+  /* Adding subtle animation when the card loads */
+  @keyframes leadingCardFadeIn {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .leading-card {
+    animation: leadingCardFadeIn 3s ease-out;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .leading-card-body {
+      padding: 15px;
+    }
+    .leading-card-title {
+      font-size: 20px;
+    }
+  }
+  

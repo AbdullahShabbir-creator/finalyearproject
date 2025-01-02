@@ -195,6 +195,7 @@ const EducationCards = () => {
 
   return (
     <div className="container mt-5">
+        <h1 className="text-center text-success mb-5">Curriculum Overview</h1>
       <div className="row">
         {cardsData.map((card, index) => (
           <div className="col-md-4 d-flex mb-4" key={index}>
