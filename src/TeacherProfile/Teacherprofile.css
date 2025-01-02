@@ -1,0 +1,128 @@
+/* TeacherProfile.css */
+.teacher-profiles {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .profiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal-width columns */
+    gap: 20px; /* Adds space between the profile cards */
+    margin-top: 20px; /* Space above the profiles */
+  }
+  
+  .teacher-profile {
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #4c4455, #9ebbec); /* Gradient background */
+    color: #fff; /* Text color changed to white for better contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .teacher-profile:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #2b3342, #6a11cb); /* Reversed gradient on hover */
+  }
+  
+  .teacher-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .teacher-profile:hover .teacher-image {
+    transform: scale(1.03);
+  }
+  
+  .teacher-info {
+    margin-top: 15px;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background for text */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .teacher-info h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #383696;
+  }
+  
+  .teacher-info p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .teacher-info p strong {
+    color: #000;
+  }
+  
+  /* Hover effect for teacher profile */
+  .teacher-profile:hover .teacher-info {
+    background-color: rgba(255, 255, 255, 0.9); /* Lighter background when hovered */
+  }
+  
+  /* Responsive Layout for smaller screens */
+  @media (max-width: 1200px) {
+    .profiles {
+      grid-template-columns: repeat(3, 1fr); /* 3 profiles in a line on medium screens */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .profiles {
+      grid-template-columns: repeat(2, 1fr); /* 2 profiles in a line on smaller screens */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .profiles {
+      grid-template-columns: 1fr; /* 1 profile in a line on very small screens */
+    }
+  }
+ /* Container for each image */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border:2px solid rgb(25, 32, 27);
+}
+
+/* Apply blur effect on hover */
+.image-container:hover .image {
+    filter: blur(1px);
+    transition: filter 0.3s ease;
+}
+
+/* Title text that appears on hover, centered */
+.image-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the title horizontally and vertically */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    visibility: hidden; /* Initially hidden */
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+
+/* Show title and change style on hover */
+.image-container:hover .image-title {
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(7, 3, 3, 0.7); 
+    color: rgb(255, 255, 255); /* Yellow text for better contrast */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: add text shadow */
+}
+

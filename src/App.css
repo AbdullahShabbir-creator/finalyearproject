@@ -9,8 +9,7 @@
 
 /* Navbar with Gradient and Animation */
 .navbar {
-  background: linear-gradient(45deg, #f0f2f3, #e4b6f5);
-  /* color: white; */
+  background: linear-gradient(45deg, #f3f3f3, #c8cfd4);
   padding: 15px;
   position: sticky;
   top: 0;
@@ -20,7 +19,7 @@
 }
 
 .navbar:hover {
-  background: linear-gradient(45deg, #8a7e8f, #2f80b6);
+  background: linear-gradient(45deg, #f0f2f3, #e4b6f5);
 }
 
 .navbar a {
