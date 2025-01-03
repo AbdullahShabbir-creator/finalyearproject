@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+
+The Asif Public School project is a web application built with the MERN stack (MongoDB, Express.js, React, Node.js). It manages student admissions, displays fee structures, and allows users to track their admission status.
+
+Key Features:
+Admission Form: Students can submit personal and academic details, generating a downloadable PDF of the form.
+MIS ID Tracking: Students track admission status using their unique MIS ID.
+Admin Panel: Admins can view and filter admission records by class or marks.
+Authentication: JWT-based login and protected routes for security.
+Responsive Design: Built with React for a dynamic and mobile-friendly interface.
+MongoDB: Stores student data and admission records.
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
