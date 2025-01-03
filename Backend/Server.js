@@ -11,7 +11,7 @@ const topStudentsRoutes = require('./routes/topStudentsRoutes');
 const cron = require('node-cron');  // Import node-cron for scheduling
 const path = require('path');  // Add this to handle file paths correctly
 const cors = require('cors');
-
+const chatbotRoutes = require("./routes/chatbotRoutes");
 // Initialize app before using it
 const app = express();
 
@@ -38,7 +38,7 @@ app.use('/api/events', eventRoutes);
 app.use('/api/exams', examRoutes);
 app.use('/api', topStudentsRoutes);
 app.use('/api/scholarship', scholarshipRoutes);
-
+app.use("/api", chatbotRoutes);
 
 // Start the server and pass the HTTP server to WebSocket
 const server = app.listen(5000, () => {

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import "./Faqs.css"
+import "./Faqs.css";
 
 const FaqItem = ({ question, answer, isOpen, toggle }) => {
   return (
-    <div className={`accordion ${isOpen ? 'active' : ''}`}>
+    <div className={`faqs-accordion ${isOpen ? 'active' : ''}`}>
       <input
         type="checkbox"
         id={question}
         checked={isOpen}
         onChange={toggle}
       />
-      <label htmlFor={question} className="accordion__header">
+      <label htmlFor={question} className="faqs-accordion__header">
          <h6> {question}</h6>
       </label>
-      <div className="accordion__content" style={{ maxHeight: isOpen ? '1000px' : '0' }}>
+      <div className="faqs-accordion__content" style={{ maxHeight: isOpen ? '1000px' : '0' }}>
         <h5 className='text-muted'><h6 className='text-danger'>Ans:</h6>{answer}</h5>
       </div>
     </div>
@@ -52,10 +52,11 @@ const Faqs = () => {
 
   return (
     <>
-    <div className='bg-primary'>
-    <h4 className='container pt-5 text-white'>FAQs: All You Need to Know</h4>
-    <div className="containers ">
-      <div className="accordions">
+    <div className='faqs-container bg-primary'>
+    <h4 className='container pt-2 mb-5 text-white'>FAQs: All You Need to Know</h4>
+    <div className="faqs-containers">
+    
+      <div className="faqs-accordions">
         {questions.map((item, index) => (
           <FaqItem
             key={index}
@@ -66,8 +67,11 @@ const Faqs = () => {
           />
         ))}
       </div>
+    
     </div>
+   
     </div>
+     
     </>
   );
 };
