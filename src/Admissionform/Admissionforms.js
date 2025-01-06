@@ -50,6 +50,14 @@ const AdmissionForm = () => {
     setErrors({ ...errors, [name]: validationError });
   };
 
+  // Function to restrict non-numeric characters
+  const handleKeyPress = (e) => {
+    const charCode = e.keyCode || e.which;
+    if ((charCode < 48 || charCode > 57) && charCode !== 8) {
+      e.preventDefault(); // Prevent non-numeric input
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.values(errors).some((err) => err !== "")) {
@@ -122,7 +130,21 @@ const AdmissionForm = () => {
           <form className="admission-form" style={{ marginLeft: "60px" }} onSubmit={handleSubmit}>
             <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required />
             <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required />
-            <input type="text" name="classAppliedFor" placeholder="Class Applied For" onChange={handleChange} required />
+            <select name="classAppliedFor" onChange={handleChange} required>
+              <option value="">Select Class</option>
+              <option value="Pre">Pre</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+
             <input
               type="number"
               name="age"
@@ -141,7 +163,16 @@ const AdmissionForm = () => {
             <input type="text" name="address" placeholder="Address" onChange={handleChange} required />
             <input type="text" name="city" placeholder="City" onChange={handleChange} required />
             <input type="text" name="state" placeholder="State" onChange={handleChange} required />
-            <input type="text" name="zip" placeholder="ZIP Code" onChange={handleChange} required />
+            <input
+              type="text"
+              name="zip"
+              placeholder="ZIP Code"
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              required
+            />
             <input
               type="text"
               name="guardianName"
@@ -154,7 +185,9 @@ const AdmissionForm = () => {
               name="contactNumber"
               placeholder="Contact Number"
               onChange={handleChange}
-              onKeyUp={handleChange}
+              onKeyPress={handleKeyPress}
+              inputMode="numeric"
+              pattern="[0-9]*"
               required
             />
             {errors.contactNumber && <p className="error-message">{errors.contactNumber}</p>}
@@ -166,12 +199,15 @@ const AdmissionForm = () => {
               required
             />
             <input type="text" name="previousSchool" placeholder="Previous School" onChange={handleChange} required />
+            <input type="text" name="Name of Relation" placeholder="Name of Relation " onChange={handleChange} required />
             <input
               type="number"
               name="emergencyContact"
               placeholder="Emergency Contact"
               onChange={handleChange}
-              onKeyUp={handleChange}
+              onKeyPress={handleKeyPress}
+              inputMode="numeric"
+              pattern="[0-9]*"
               required
             />
             {errors.emergencyContact && <p className="error-message">{errors.emergencyContact}</p>}
