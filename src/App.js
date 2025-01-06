@@ -25,7 +25,7 @@ import Fees from "./FeeStucture/Fees";
 import ExamAssessment from "./Exam Assessment/Exam_Assessment";
 import Chatbot from "./Chatbot";
 import ScholarshipForm from "./ScholarshipForm/ScholarshipForm";
-import AdmissionsByClass from "./AdmissionsByClass/AdmissionsByClass"
+import AdmissionsByClass from "./AdmissionsByClass/AdmissionsByClass";
 const Layout = ({ children }) => (
   <>
     <Navbar />
@@ -64,11 +64,12 @@ function AppWithNavigation() {
               <Care />
               <Services />
               <Footer />
+              <test/>
             </>
           }
         />
 
-        {/* Chatbot Popup */}
+      
        
 
         {/* Other Routes */}
@@ -89,7 +90,8 @@ function AppWithNavigation() {
         <Route path="/ExamAssessment" element={<Layout><ExamAssessment /></Layout>} />
         <Route path="/AdmissionsByClass" element={<Layout><AdmissionsByClass /></Layout>} />
         <Route path="/login" element={<Layout><LoginAD /></Layout>} />
-      
+        <Route path="/" element={<Layout><ff/></Layout>} />
+        
       </Routes>
 
       {/* Chatbot button */}

@@ -7,31 +7,29 @@ const StyledNavLink = styled(Link)`
   color: #000; // Default text color
   text-decoration: none; // Remove underline by default
   font-family: "fangsong", sans-serif; // Apply font family
-  transition: all 0.4s ease; 
+  transition: all 0.4s ease;
 
   &:hover {
-    // color:rgb(0, 128, 248); // Change text color on hover
     text-decoration: none; // Underline the text on hover
     transform: scale(1.01); // Slightly enlarge the link on hover
-    // Subtle background effect
   }
 `;
-
-
+     
 const Navbar = () => {
-  const isLoggedIn = localStorage.getItem('token') !== null; 
+  const isLoggedIn = localStorage.getItem('token') !== null;
   const navigate = useNavigate();
-  
-const handleLogout = () => {
-  localStorage.removeItem('token');
-  alert("Logout Succesfull ")
-  navigate('/login');
-};
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    alert("Logout Successful");
+    navigate('/login');
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light font-weight-bold">
         <div className="container">
-         <Link  className="navbar-brand d-flex align-items-center" to="/">
+          <Link className="navbar-brand d-flex align-items-center" to="/">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2BbZrHjvXQJ3FWOeXkYDCLNhsEW668dVmQ&s"
               alt="logo"
@@ -58,190 +56,205 @@ const handleLogout = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
         </div>
+
         <div className="collapse navbar-collapse text-dark" id="navbarNav">
-        <ul
-            className="navbar-nav p-3 ms-auto"
-            style={{ fontFamily: "fangsong" }}
-          >
-            <li className="nav-item">
-            <StyledNavLink className="nav-link text-dark" to="/">
-                Home
-              </StyledNavLink>            </li>
-            <li className="nav-item dropdown">
-              <StyledNavLink 
-                className="nav-link dropdown-toggle text-dark"
-                to="#"
-                id="aboutDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                About Us
-              </StyledNavLink>
-              <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
-                <li>
-                  <StyledNavLink 
-                    className="nav-link dropdown-item text-dark"
-                    to="/VisionMissionGoals"
+          <ul className="navbar-nav p-3 ms-auto" style={{ fontFamily: "fangsong" }}>
+
+
+            {!isLoggedIn && (
+              <>
+                <li className="nav-item">
+                  <StyledNavLink className="nav-link text-dark" to="/">
+                    Home
+                  </StyledNavLink>
+                </li>
+                <li className="nav-item dropdown">
+                  <StyledNavLink
+                    className="nav-link dropdown-toggle text-dark"
+                    to="#"
+                    id="aboutDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                   >
-                    Vision And Mission
+                    About Us
                   </StyledNavLink>
+                  <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
+                    <li>
+                      <StyledNavLink className="nav-link dropdown-item text-dark" to="/VisionMissionGoals">
+                        Vision And Mission
+                      </StyledNavLink>
+                    </li>
+                    <li>
+                      <StyledNavLink className="nav-link dropdown-item text-dark" to="/LeadingwithInnovation">
+                        Leading with Innovation
+                      </StyledNavLink>
+                    </li>
+                  </ul>
                 </li>
-                <li>
-                  <StyledNavLink 
-                    className="nav-link dropdown-item text-dark"
-                    to="/LeadingwithInnovation"
+
+                <li className="nav-item dropdown">
+                  <StyledNavLink
+                    className="nav-link dropdown-toggle text-dark"
+                    to="#"
+                    id="academicsDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                   >
-                    Leading with Innovation
+                    Academics
+                  </StyledNavLink>
+                  <ul className="dropdown-menu" aria-labelledby="academicsDropdown">
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/EducationCards">
+                        Curriculum Overview
+                      </StyledNavLink>
+                    </li>
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/ExamAssessment">
+                        Result
+                      </StyledNavLink>
+                    </li>
+                  </ul>
+                </li>
+
+                <li className="nav-item dropdown">
+                  <StyledNavLink
+                    className="nav-link dropdown-toggle text-dark"
+                    to="#"
+                    id="admissionsDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Admissions
+                  </StyledNavLink>
+                  <ul className="dropdown-menu" aria-labelledby="admissionsDropdown">
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/Admissionprocedure">
+                        Admission Process
+                      </StyledNavLink>
+                    </li>
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/AdmissionForm">
+                        Application Forms
+                      </StyledNavLink>
+                    </li>
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/Fees">
+                        Fees and Scholarships
+                      </StyledNavLink>
+                    </li>
+                  </ul>
+                </li>
+
+                <li className="nav-item dropdown">
+                  <StyledNavLink
+                    className="nav-link dropdown-toggle text-dark"
+                    to="#"
+                    id="studentLifeDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Student Life
+                  </StyledNavLink>
+                  <ul className="dropdown-menu" aria-labelledby="studentLifeDropdown">
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/Facilities">
+                        Facilities
+                      </StyledNavLink>
+                    </li>
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/Studentevents">
+                        Student Events
+                      </StyledNavLink>
+                    </li>
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/Faqs">
+                        FAQs
+                      </StyledNavLink>
+                    </li>
+
+                  </ul>
+                </li>
+
+                <li className="nav-item dropdown">
+                  <StyledNavLink
+                    className="nav-link dropdown-toggle text-dark"
+                    to="#"
+                    id="newsEventsDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    News And Events
+                  </StyledNavLink>
+                  <ul className="dropdown-menu" aria-labelledby="newsEventsDropdown">
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/Schoolnews">
+                        School Gallery
+                      </StyledNavLink>
+                    </li>
+                    <li>
+                      <StyledNavLink className="dropdown-item" to="/StudentCalender">
+                        Events Calendar
+                      </StyledNavLink>
+                    </li>
+
+                  </ul>
+
+                </li>
+                <li className="nav-item">
+                  <StyledNavLink className="nav-link text-dark" to="/ContactUs">
+                    Contact
                   </StyledNavLink>
                 </li>
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <StyledNavLink 
-                className="nav-link dropdown-toggle text-dark"
-                to="#"
-                id="academicsDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Academics
-              </StyledNavLink>
-              <ul className="dropdown-menu" aria-labelledby="academicsDropdown">
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/EducationCards">
-                    Curriculum Overview
-                  </StyledNavLink>
-                </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/ExamAssessment">
-                   Result
-                  </StyledNavLink>
-                </li>
-               
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <StyledNavLink 
-                className="nav-link dropdown-toggle text-dark"
-                to="#"
-                id="admissionsDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Admissions
-              </StyledNavLink>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="admissionsDropdown"
-              >
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/Admissionprocedure">
-                    Admission Process
-                  </StyledNavLink>
-                </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/AdmissionForm">
-                    Application Forms
-                  </StyledNavLink>
-                </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/Fees">
-                    Fees and Scholarships
-                  </StyledNavLink>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <StyledNavLink 
-                className="nav-link dropdown-toggle text-dark"
-                to="#"
-                id="studentLifeDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Student Life
-              </StyledNavLink>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="studentLifeDropdown"
-              >
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/Facilities">
-                    Facilities
-                  </StyledNavLink>
-                </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/Studentevents">
-                    Student Events
-                  </StyledNavLink>
-                </li>
-                
-          
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/Faqs">
-                    FAQs
-                  </StyledNavLink>
-                </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/AdmissionsByClass">
-                  AdmissionsByClass
-                  </StyledNavLink>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <StyledNavLink 
-                className="nav-link dropdown-toggle text-dark"
-                to="#"
-                id="newsEventsDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                News And Events
-              </StyledNavLink>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="newsEventsDropdown"
-              >
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/Schoolnews">
-                    School Gallery
-                  </StyledNavLink>
-                </li>
-                <li>
-                  <StyledNavLink  className="dropdown-item" to="/StudentCalender">
-                    Events Calendar
-                  </StyledNavLink>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <StyledNavLink  className="nav-link text-dark" to="/ContactUs">
-                Contact
-              </StyledNavLink>
-            </li>
-            {isLoggedIn ? (
-          <li className="nav-item">
-            <StyledNavLink className="nav-link text-dark" onClick={handleLogout}>
-              Logout
-            </StyledNavLink>
-          </li>
-        ) : (
-          <li className="nav-item">
-            <StyledNavLink className="nav-link text-dark" to="/login">
-              Admin
-            </StyledNavLink>
-          </li>
-        )}
+                {isLoggedIn ? (
+                  <li className="nav-item">
+                    <StyledNavLink className="nav-link text-dark" onClick={handleLogout}>
+                      Logout
+                    </StyledNavLink>
+                  </li>
+                ) : (
+                  <li className="nav-item">
+                    <StyledNavLink className="nav-link text-dark" to="/login">
+                      Admin
+                    </StyledNavLink>
+                  </li>
+                )}
+              </>
+            )}
+
            
+            {isLoggedIn && (
+              <>
+                
+                <li>
+                  <StyledNavLink className="dropdown-item" to="/ExamAssessment">
+                    Result
+                  </StyledNavLink>
+                </li>
+                <li className="nav-item">
+                  <StyledNavLink className="nav-link text-dark" to="/Schoolnews">
+                    Contact
+                  </StyledNavLink>
+                </li>
+                <li>
+                  <StyledNavLink className="dropdown-item" to="/AdmissionsByClass">
+                    AdmissionsByClass
+                  </StyledNavLink>
+                </li>
+                <li className="nav-item">
+                  <StyledNavLink className="nav-link text-dark" onClick={handleLogout}>
+                    Logout
+                  </StyledNavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
-      </nav>   
+      </nav>
     </>
   );
 };
