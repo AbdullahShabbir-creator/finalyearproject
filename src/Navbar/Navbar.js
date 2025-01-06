@@ -186,6 +186,11 @@ const handleLogout = () => {
                     FAQs
                   </StyledNavLink>
                 </li>
+                <li>
+                  <StyledNavLink  className="dropdown-item" to="/AdmissionsByClass">
+                  AdmissionsByClass
+                  </StyledNavLink>
+                </li>
               </ul>
             </li>
             <li className="nav-item dropdown">

@@ -71,29 +71,22 @@ exports.admissionController = async (req, res) => {
 
 // admissionController.js
 
-exports.getTopStudents = async (req, res) => {
+exports.getAdmissionsGroupedByClass = async (req, res) => {
   try {
-    // Fetch all students, group by 'classAppliedFor', and sort by 'ObtainedMarks'
-    const studentsGroupedByClass = await AdmissionForm.aggregate([
-      { $sort: { ObtainedMarks: -1 } }, // Sort students by marks
+    const groupedAdmissions = await AdmissionForm.aggregate([
       { $group: { 
-          _id: "$classAppliedFor",  // Group by 'classAppliedFor'
-          students: { $push: "$$ROOT" }, // Push the whole student document
+          _id: "$classAppliedFor", 
+          students: { $push: "$$ROOT" } 
       }},
     ]);
 
-    // Map through the grouped students and take the top 30 from each class
-    const topStudentsByClass = studentsGroupedByClass.map(group => ({
-      class: group._id,
-      topStudents: group.students.slice(0, 30), // Get the top 30 students for the class
-    }));
-
-    res.status(200).json({ topStudentsByClass });
+    res.status(200).json({ groupedAdmissions });
   } catch (error) {
-    console.error("Error fetching top students:", error);
-    res.status(500).json({ error: "Failed to fetch top students." });
+    console.error("Error fetching grouped admissions:", error);
+    res.status(500).json({ error: "Failed to fetch grouped admissions." });
   }
 };
+
 // admissionController.js
 
 exports.trackAdmissionById = async (req, res) => {

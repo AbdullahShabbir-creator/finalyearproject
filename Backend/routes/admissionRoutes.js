@@ -1,5 +1,5 @@
 const express = require("express");
-const { admissionController, getTopStudents, trackAdmissionById  } = require("../controllers/admissionController");
+const { admissionController, getAdmissionsGroupedByClass, trackAdmissionById  } = require("../controllers/admissionController");
 
 const router = express.Router();
 
@@ -7,7 +7,8 @@ const router = express.Router();
 router.post("/admission", admissionController);
 
 // Route for fetching top 100 students
-router.get("/admissions/top", getTopStudents);
+router.get("/admissions/grouped", getAdmissionsGroupedByClass);
+
 
 // admissionRoutes.js
 

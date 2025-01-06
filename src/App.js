@@ -25,7 +25,7 @@ import Fees from "./FeeStucture/Fees";
 import ExamAssessment from "./Exam Assessment/Exam_Assessment";
 import Chatbot from "./Chatbot";
 import ScholarshipForm from "./ScholarshipForm/ScholarshipForm";
-
+import AdmissionsByClass from "./AdmissionsByClass/AdmissionsByClass"
 const Layout = ({ children }) => (
   <>
     <Navbar />
@@ -87,8 +87,9 @@ function AppWithNavigation() {
         <Route path="/Fees" element={<Layout><Fees /></Layout>} />
         <Route path="/Scholarshipform" element={<Layout><ScholarshipForm /></Layout>} />
         <Route path="/ExamAssessment" element={<Layout><ExamAssessment /></Layout>} />
+        <Route path="/AdmissionsByClass" element={<Layout><AdmissionsByClass /></Layout>} />
         <Route path="/login" element={<Layout><LoginAD /></Layout>} />
-        {/* <Route path="/signup" element={<Sigup/>} /> */}
+      
       </Routes>
 
       {/* Chatbot button */}
