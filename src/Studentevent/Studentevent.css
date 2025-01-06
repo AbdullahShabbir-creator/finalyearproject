@@ -33,7 +33,7 @@
   /* Gradient text for event name */
   .student-card-header {
     background: linear-gradient(45deg, #ff6f61, #f8b400);
-    -webkit-background-clip: text;
+   
     color: transparent;
     font-size: 1.5rem;
   }
