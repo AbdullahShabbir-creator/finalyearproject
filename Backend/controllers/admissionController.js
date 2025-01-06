@@ -1,6 +1,8 @@
 const AdmissionForm = require("../Models/AdmissionForm");
 const Counter = require("../Models/Counter");
 const sendNotification = require('../utils/emailService');
+
+// Handle new admission submission
 exports.admissionController = async (req, res) => {
   try {
     const requiredFields = [
@@ -72,9 +74,7 @@ exports.admissionController = async (req, res) => {
   }
 };
 
-
-// admissionController.js
-
+// Get admissions grouped by class
 exports.getAdmissionsGroupedByClass = async (req, res) => {
   try {
     const groupedAdmissions = await AdmissionForm.aggregate([
@@ -91,8 +91,7 @@ exports.getAdmissionsGroupedByClass = async (req, res) => {
   }
 };
 
-// admissionController.js
-
+// Track admission by MIS ID
 exports.trackAdmissionById = async (req, res) => {
   try {
     const { misId } = req.params;  // Get MIS ID from URL parameters
@@ -114,5 +113,43 @@ exports.trackAdmissionById = async (req, res) => {
   } catch (error) {
     console.error("Error fetching admission by MIS ID:", error);
     res.status(500).json({ error: "Failed to fetch admission details." });
+  }
+};
+
+// Update admission details by ID
+exports.updateAdmission = async (req, res) => {
+  try {
+    // Find the admission by ID and update it with the provided data
+    const updatedAdmission = await AdmissionForm.findByIdAndUpdate(
+      req.params.id, // ID to update
+      req.body, // New data to update
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedAdmission) {
+      return res.status(404).json({ message: "Admission not found" });
+    }
+
+    res.status(200).json({ message: "Admission updated successfully", data: updatedAdmission });
+  } catch (error) {
+    console.error("Error updating admission:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+// Delete admission by ID
+exports.deleteAdmission = async (req, res) => {
+  try {
+    const deletedAdmission = await AdmissionForm.findByIdAndDelete(req.params.id);
+
+    if (!deletedAdmission) {
+      return res.status(404).json({ message: "Admission not found" });
+    }
+
+    res.status(200).json({ message: "Admission deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting admission:", error);
+    res.status(500).json({ message: error.message });
   }
 };

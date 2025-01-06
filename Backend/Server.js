@@ -12,6 +12,7 @@ const cron = require('node-cron');  // Import node-cron for scheduling
 const path = require('path');  // Add this to handle file paths correctly
 const cors = require('cors');
 const chatbotRoutes = require("./routes/chatbotRoutes");
+const feestructureRoutes=require("./routes/feestructureRoutes")
 // Initialize app before using it
 const app = express();
 
@@ -40,12 +41,12 @@ app.use('/api', topStudentsRoutes);
 app.use('/api/scholarship', scholarshipRoutes);
 app.use("/api", chatbotRoutes);
 
+app.use("/api", feestructureRoutes);
 // Start the server and pass the HTTP server to WebSocket
 const server = app.listen(5000, () => {
   console.log('Server running on port 5000');
 });
 
-// Create a WebSocket server using the `server` variable
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', (ws) => {
@@ -61,14 +62,8 @@ wss.on('connection', (ws) => {
   ws.send('Connected to WebSocket');
 });
 
-// Add cron job to calculate and update top 20 students at midnight every day
-const { calculateTopStudents } = require('./controllers/topStudentsController');  // Import your function
-
-cron.schedule('0 0 * * *', async () => {  // This runs every day at midnight
-  try {
-    await calculateTopStudents();
-    console.log('Top 20 students updated successfully!');
-  } catch (error) {
-    console.error('Error updating top 20 students:', error);
-  }
+// Route to fetch available classes
+app.get("/api/classes", (req, res) => {
+  const classes = ["Pre", "KG", "Prep", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  res.json(classes); // Send the list of classes as JSON
 });
