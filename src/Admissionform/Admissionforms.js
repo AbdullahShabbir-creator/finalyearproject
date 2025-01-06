@@ -199,7 +199,14 @@ const AdmissionForm = () => {
               required
             />
             <input type="text" name="previousSchool" placeholder="Previous School" onChange={handleChange} required />
-            <input type="text" name="Name of Relation" placeholder="Name of Relation " onChange={handleChange} required />
+            <input
+              type="text"
+              name="emergencyContactNumber"
+              placeholder="Name of Relation"
+              onChange={handleChange}
+              required
+            />
+
             <input
               type="number"
               name="emergencyContact"

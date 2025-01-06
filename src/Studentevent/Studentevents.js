@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./Studentevent.css"
 const Studentevents = () => {
   const [events, setEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({
@@ -8,19 +8,17 @@ const Studentevents = () => {
     location: "",
     description: "",
   });
-  const [editEvent, setEditEvent] = useState(null); // For editing event
+  const [editEvent, setEditEvent] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Check login status on component mount
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token); // Set login status based on token presence
-    fetchEvents(); // Fetch events on load
+    setIsLoggedIn(!!token);
+    fetchEvents();
   }, []);
 
-  // Fetch events from the API
   const fetchEvents = async () => {
     setLoading(true);
     try {
@@ -30,10 +28,8 @@ const Studentevents = () => {
           "Content-Type": "application/json",
         },
       });
-
       const data = await response.json();
       setLoading(false);
-
       if (response.ok) {
         setEvents(data);
       } else {
@@ -45,10 +41,8 @@ const Studentevents = () => {
     }
   };
 
-  // Handle adding an event
   const handleAddEvent = async () => {
     if (!isLoggedIn) return;
-
     const token = localStorage.getItem("token");
     setLoading(true);
     try {
@@ -60,13 +54,11 @@ const Studentevents = () => {
         },
         body: JSON.stringify(newEvent),
       });
-
       const data = await response.json();
       setLoading(false);
-
       if (response.ok) {
-        fetchEvents(); // Re-fetch events after adding
-        setNewEvent({ name: "", date: "", location: "", description: "" }); // Clear form
+        fetchEvents();
+        setNewEvent({ name: "", date: "", location: "", description: "" });
       } else {
         setError(data.error || "Failed to add event");
       }
@@ -76,10 +68,8 @@ const Studentevents = () => {
     }
   };
 
-  // Handle deleting an event
   const handleDeleteEvent = async (id) => {
     if (!isLoggedIn) return;
-
     const token = localStorage.getItem("token");
     setLoading(true);
     try {
@@ -90,12 +80,10 @@ const Studentevents = () => {
           "Content-Type": "application/json",
         },
       });
-
       const data = await response.json();
       setLoading(false);
-
       if (response.ok) {
-        fetchEvents(); // Re-fetch events after deletion
+        fetchEvents();
       } else {
         setError(data.error || "Failed to delete event");
       }
@@ -105,10 +93,8 @@ const Studentevents = () => {
     }
   };
 
-  // Handle updating an event
   const handleUpdateEvent = async () => {
     if (!isLoggedIn || !editEvent) return;
-
     const token = localStorage.getItem("token");
     setLoading(true);
     try {
@@ -123,13 +109,11 @@ const Studentevents = () => {
           body: JSON.stringify(editEvent),
         }
       );
-
       const data = await response.json();
       setLoading(false);
-
       if (response.ok) {
-        fetchEvents(); // Re-fetch events after updating
-        setEditEvent(null); // Clear edit state
+        fetchEvents();
+        setEditEvent(null);
       } else {
         setError(data.error || "Failed to update event");
       }
@@ -140,33 +124,38 @@ const Studentevents = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h3 className="text-center text-success">Upcoming Events</h3>
+    <div className="student-container container">
+      <h3 className="student-header">Upcoming Events</h3>
 
       {loading && <p>Loading events...</p>}
       {error && <p className="text-danger">{error}</p>}
 
       <div className="row g-4 justify-content-center">
-        {/* Render events */}
         {events.map((event) => (
           <div key={event._id} className="col-12 col-sm-6 col-md-4 d-flex mt-4">
-            <div className="card shadow-lg text-center w-100 d-flex flex-column justify-content-between">
-              <div className="card-header text-primary"><h3>{event.name}</h3></div>
-              <div className="card-body">
-                {/* <h5 className="card-subtitle mb-3 text-muted">{event.date}</h5> */}
-                <p className="card-text"> <strong>{event.location}</strong></p>
-                <p className="card-text">{event.description}</p>
+            <div className="student-card shadow-lg text-center w-100 d-flex flex-column justify-content-between">
+              <div className="student-card-header">
+                <h2 className="mt-4 text-white">{event.name}</h2>
+              </div>
+              <div className="student-card-body">
+                <h5 className="card-subtitle mt-1 ">
+                  {new Date(event.date).toLocaleDateString()}
+                </h5>
+                <h4 className="student-card-text mt-4">
+                  <h4><strong className="text-danger ">{event.location}</strong></h4>
+                </h4>
+                <p className="student-card-text text-dark">{event.description}</p>
                 {isLoggedIn && (
                   <>
                     <button
-                      className="btn btn-success m-2"
+                      className="student-btn-secondary"
                       onClick={() => setEditEvent(event)}
                       disabled={loading}
                     >
                       Edit
                     </button>
                     <button
-                      className="btn btn-danger m-2"
+                      className="student-btn-secondary "
                       onClick={() => handleDeleteEvent(event._id)}
                       disabled={loading}
                     >
@@ -180,9 +169,8 @@ const Studentevents = () => {
         ))}
       </div>
 
-   
       {isLoggedIn && (
-        <div className="mt-5">
+        <div className="add-event-container">
           <h4 className="m-2">{editEvent ? "Edit Event" : "Add New Event"}</h4>
           <div className="form-group">
             <input
@@ -229,7 +217,7 @@ const Studentevents = () => {
             ></textarea>
           </div>
           <button
-            className="btn btn-primary "
+            className="student-btn"
             onClick={editEvent ? handleUpdateEvent : handleAddEvent}
             disabled={loading}
           >
@@ -238,12 +226,12 @@ const Studentevents = () => {
                 ? "Updating..."
                 : "Adding..."
               : editEvent
-              ? "Update Event"
-              : "Add Event"}
+                ? "Update Event"
+                : "Add Event"}
           </button>
           {editEvent && (
             <button
-              className="btn btn-secondary ms-2"
+              className="student-btn-secondary ms-2"
               onClick={() => setEditEvent(null)}
               disabled={loading}
             >
@@ -253,6 +241,7 @@ const Studentevents = () => {
         </div>
       )}
     </div>
+
   );
 };
 

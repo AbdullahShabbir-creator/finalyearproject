@@ -91,7 +91,7 @@ const ExamAssessment = () => {
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
       <div>
-        <label htmlFor="class">Select Class (Pre to 10):</label>
+        <label htmlFor="class" className='text-primary'>Select Class (Pre to 10):</label>
         <select
           id="class"
           value={selectedClass}
@@ -117,7 +117,7 @@ const ExamAssessment = () => {
       {isAuthenticated && (
         <div>
           <div>
-            <label htmlFor="pdf">Upload Exam Result (PDF):</label>
+            <label htmlFor="pdf" className='text-primary'>Upload Exam Result (PDF):</label>
             <input
               type="file"
               id="pdf"

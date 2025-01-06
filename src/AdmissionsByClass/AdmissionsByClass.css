@@ -1,88 +1,62 @@
-/* General Styles */
-.class-admission-container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: linear-gradient(120deg, #f0f4ff, #dff1ff);
-    min-height: 100vh;
-  }
-  
-  .class-admission-title {
-    text-align: center;
-    color: #003366;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .class-admission-error-message {
-    color: red;
-    text-align: center;
-  }
-  
-  .class-admission-loading {
-    text-align: center;
-    font-size: 18px;
-    color: #666;
-  }
-  
-  /* Table Container */
-  .class-admission-table-container {
-    margin: 20px 0;
-    padding: 15px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Header Styles */
-  .class-admission-header {
-    margin-bottom: 10px;
-    color: #003366;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    border-bottom: 2px solid #003366;
-    padding-bottom: 5px;
-  }
-  
-  /* Table Styles */
-  .class-admission-table {
+/* General Table Styles */
+.class-admission-table {
     width: 100%;
     border-collapse: collapse;
-    text-align: left;
-    font-size: 14px;
+    margin-top: 20px;
+    table-layout: auto; /* Ensure the columns expand as needed */
   }
-  
-  .class-admission-table thead {
-    background: linear-gradient(120deg, #003366, #005f99);
-    color: white;
+  .class-admission-title{
+    margin-top: 40px;
+    text-align: center;
+    color: green;
   }
-  
   .class-admission-table th, .class-admission-table td {
+    padding: 12px;
+    text-align: left;
     border: 1px solid #ddd;
-    padding: 8px;
+    white-space: nowrap; /* Prevent text from wrapping */
   }
   
   .class-admission-table th {
+    background-color: #f4f4f4;
     font-weight: bold;
-    text-transform: uppercase;
   }
   
-  .class-admission-table tbody tr:nth-child(even) {
-    background: #f9f9f9;
-  }
-  
+  /* Hover effect on rows */
   .class-admission-table tbody tr:hover {
-    background: #f1f1f1;
+    background-color: #f1f1f1;
   }
   
-  /* Responsive Styles */
+  /* Make table scrollable on small screens */
+  .class-admission-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Small screen adjustments for table headers and cells */
   @media (max-width: 768px) {
-    .class-admission-header {
-      font-size: 18px;
+    .class-admission-table th,
+    .class-admission-table td {
+      padding: 8px;  /* Reduce padding */
+      font-size: 14px;  /* Smaller text size */
     }
   
-    .class-admission-table th, .class-admission-table td {
-      font-size: 12px;
+    /* Reduce font size for header */
+    .class-admission-table th {
+      font-size: 12px; /* Smaller header text */
+    }
+  }
+  
+  /* For very small screens like mobile */
+  @media (max-width: 480px) {
+    .class-admission-table th,
+    .class-admission-table td {
+      padding: 6px;
+      font-size: 12px; /* Further reduce font size */
+    }
+  
+    .class-admission-table th {
+      font-size: 10px; /* Even smaller header text */
     }
   }
   
