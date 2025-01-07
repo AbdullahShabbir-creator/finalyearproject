@@ -1,4 +1,5 @@
 import React from "react";
+import "./EducationCards.css"; // Assuming your CSS is in this file
 
 const EducationCards = () => {
   const cardsData = [
@@ -191,44 +192,57 @@ const EducationCards = () => {
     ],
   },
 ];
+  
 
+return (
+  <>
+  <h1 className="text-center text-success bg-dark p-3 mt-1">Curriculum Overview</h1>
+  <div className=" m-0 position-relative">
 
-  return (
-    <div className="container mt-5">
-        <h1 className="text-center text-success mb-5">Curriculum Overview</h1>
-      <div className="row">
-        {cardsData.map((card, index) => (
-          <div className="col-md-4 d-flex mb-4" key={index}>
-            <div
-              className="card flex-fill"
-              style={{ backgroundColor: "#cfff006e" }}
-            >
-              <div className="card-header text-center">{card.title}</div>
-              <div
-                className="card-body d-flex flex-column"
-                style={{ backgroundColor: "#cfff006e" }}
-              >
-                <h5 className="card-title">Focus:</h5>
-                <p className="card-text">{card.focus}</p>
-                <h5 className="card-title">Subjects:</h5>
-                <ul className="list-group flex-fill">
-                  {card.subjects.map((subject, index) => (
-                    <li
-                      className="list-group-item"
-                      style={{ backgroundColor: "" }}
-                      key={index}
-                    >
-                      <span>{subject.title}:</span> {subject.description}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+    <video
+      className="background-video"
+      autoPlay
+      loop
+      muted
+      playsInline
+    >
+      <source src="https://v.ftcdn.net/00/80/48/20/700_F_80482012_BvyGhWO9pwneLw7KYM2npPX1xqnYXLbY_ST.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div className="row p-5">
+      {cardsData.map((card, index) => (
+        <div
+          className="col-md-4 d-flex mb-4"
+          key={index}
+        >
+         
+          <div
+            className={`card flex-fill education-card-${index + 1}`}  
+          >
+            <div className="card-header text-center">{card.title}</div>
+            <div className="card-body d-flex flex-column">
+              <h5 className="card-title">Focus:</h5>
+              <p className="card-text">{card.focus}</p>
+              <h5 className="card-title">Subjects:</h5>
+              <ul className="list-group flex-fill">
+                {card.subjects.map((subject, subjectIndex) => (
+                  <li
+                    className="list-group-item text-dark"
+                    key={subjectIndex}
+                  >
+                    <span>{subject.title}:</span> {subject.description}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+  </>
+);
 };
 
 export default EducationCards;

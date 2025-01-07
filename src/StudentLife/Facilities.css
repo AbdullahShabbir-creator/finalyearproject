@@ -1,0 +1,99 @@
+/* Facilities.css */
+
+.facilities-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .facilities-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+  }
+  
+  .facilities-row {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+  
+  .facilities-image {
+    max-height: 400px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideIn 1s ease-out forwards;
+  }
+  
+  .facilities-img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  
+  .facilities-img:hover {
+    transform: scale(1);
+  }
+  
+  .facilities-text {
+    text-align: left;
+    padding-left: 2rem;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+  
+  .facilities-subheading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #28a745;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+  }
+  
+  .facilities-list {
+    list-style-type: none;
+  }
+  
+  .facilities-item {
+    font-size: 1.1rem;
+    color: #343a40;
+    line-height: 1.8;
+    padding-left: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 2.5s ease-in-out forwards;
+  }
+  
+  .facilities-item::before {
+    content: "\2022";
+    color: #007bff;
+    font-size: 1.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  

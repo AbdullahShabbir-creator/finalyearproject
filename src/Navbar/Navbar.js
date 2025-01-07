@@ -235,7 +235,11 @@ const Navbar = () => {
                   </StyledNavLink>
                 </li>
                 <li>
-
+                    <StyledNavLink className="nav-link text-dark m-2" to="/EducationCards">
+                        CurriculumOverview
+                    </StyledNavLink>
+                  </li>
+                <li>
                   <StyledNavLink className="nav-link text-dark m-2" to="/ExamAssessment">
                     Result
                   </StyledNavLink>

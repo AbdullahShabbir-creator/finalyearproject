@@ -20,7 +20,7 @@ const LoginAD = () => {
       // Save token in localStorage
       localStorage.setItem('token', response.data.token);
   
-      // Redirect user to the homepage or a protected route
+      alert("Welcome To Admin Panel")
       navigate('/');  // Or any route after login
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong');

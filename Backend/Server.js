@@ -7,9 +7,8 @@ const admissionRoutes = require("./routes/admissionRoutes");
 const workingHoursRoutes = require('./routes/workingHours');
 const eventRoutes = require("./routes/eventRoutes");
 const examRoutes = require('./routes/examRoutes');
-const topStudentsRoutes = require('./routes/topStudentsRoutes');
-const cron = require('node-cron');  // Import node-cron for scheduling
-const path = require('path');  // Add this to handle file paths correctly
+const cron = require('node-cron');  
+const path = require('path');  
 const cors = require('cors');
 const chatbotRoutes = require("./routes/chatbotRoutes");
 const scholarshipRoutes = require('./routes/scholarshipRoutes');
@@ -35,7 +34,6 @@ app.use('/api/workinghours', workingHoursRoutes);
 app.use("/api", admissionRoutes);  // Admission routes
 app.use('/api/events', eventRoutes);
 app.use('/api/exams', examRoutes);
-app.use('/api', topStudentsRoutes);
 app.use('/api/scholarship', scholarshipRoutes);
 app.use("/api", chatbotRoutes);
 
@@ -59,8 +57,3 @@ wss.on('connection', (ws) => {
   ws.send('Connected to WebSocket');
 });
 
-// Route to fetch available classes
-app.get("/api/classes", (req, res) => {
-  const classes = ["Pre", "KG", "Prep", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-  res.json(classes); // Send the list of classes as JSON
-});
