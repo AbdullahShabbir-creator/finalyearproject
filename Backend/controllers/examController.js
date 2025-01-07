@@ -70,19 +70,24 @@ const uploadPdf = (req, res) => {
   });
 };
 
-// Fetch the PDF by class name
+// Fetch the latest PDF by class name
 const getPdfByClass = async (req, res) => {
   const { className } = req.params;
   try {
-    const result = await ExamResult.findOne({ className });
-    if (!result) {
+    const result = await ExamResult.find({ className })  // Find all results for the class
+      .sort({ uploadedAt: -1 })  // Sort by 'uploadedAt' in descending order to get the latest file
+      .limit(1);  // Limit to just 1 document (the latest one)
+
+    if (result.length === 0) {
       return res.status(404).json({ message: 'No PDF found for this class' });
     }
-    res.json({ fileUrl: result.fileUrl });
+
+    res.json({ fileUrl: result[0].fileUrl });  // Return the fileUrl of the latest document
   } catch (error) {
     res.status(500).json({ message: 'Error fetching PDF' });
   }
 };
+
 
 module.exports = {
   uploadPdf,

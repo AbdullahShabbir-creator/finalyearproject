@@ -35,6 +35,9 @@ const ExamAssessment = () => {
       return;
     }
   
+    // Clear the previous pdfLink before uploading
+    setPdfLink(null);  // Reset the previous PDF link
+
     const formData = new FormData();
     formData.append('className', selectedClass);  // Ensure this is the class selected
     formData.append('pdfFile', pdfFile);  // Ensure this is the correct field for the file
@@ -48,7 +51,7 @@ const ExamAssessment = () => {
       });
   
       if (response.data.fileUrl) {
-        setPdfLink(response.data.fileUrl);
+        setPdfLink(response.data.fileUrl);  // Update the link with the new file URL
         alert('File uploaded successfully!');
       }
     } catch (error) {
@@ -58,17 +61,17 @@ const ExamAssessment = () => {
       setLoading(false);
     }
   };
-  
 
   // Memoized fetchPdf using useCallback
   const fetchPdf = useCallback(async () => {
+    if (!selectedClass) return;
     try {
       setLoading(true);
       const response = await axios.get(`http://localhost:5000/api/exams/get-pdf/${selectedClass}`);
       if (response.data.fileUrl) {
-        setPdfLink(response.data.fileUrl);
+        setPdfLink(response.data.fileUrl); // Update the pdfLink state with the new URL
       } else {
-        setPdfLink(null); // No file found
+        setPdfLink(null); // No file found for this class
       }
     } catch (error) {
       console.error('Error fetching PDF:', error);
@@ -82,7 +85,7 @@ const ExamAssessment = () => {
     if (selectedClass) {
       fetchPdf(); // Fetch PDF for the selected class
     }
-  }, [selectedClass, fetchPdf]);  // Now fetchPdf is stable
+  }, [selectedClass, fetchPdf]);  // Fetch PDF whenever the class selection changes
 
   return (
     <div className="exam-assessment">
