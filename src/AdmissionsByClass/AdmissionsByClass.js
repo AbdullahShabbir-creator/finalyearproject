@@ -11,7 +11,22 @@ const AdmissionsByClass = () => {
     const [searchQuery, setSearchQuery] = useState(""); // State for email search
     const [classQuery, setClassQuery] = useState(""); // State for class search
     const [percentageFilters, setPercentageFilters] = useState({}); // State for percentage filter per class
-
+    const [editStudent, setEditStudent] = useState(null); // Track the student to edit
+    const [updatedData, setUpdatedData] = useState({
+        firstName: "",
+        lastName: "",
+        age: "",
+        gender: "",
+        dob: "",
+        guardianName: "",
+        contactNumber: "",
+        email: "",
+        previousSchool: "",
+        emergencyContact: "",
+        emergencyContactNumber: "",
+        ObtainedMarks: "",
+        TotalMarks: ""
+    });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -53,7 +68,76 @@ const AdmissionsByClass = () => {
         }));
         setFilteredAdmissions(filteredData);
     }, [searchQuery, classQuery, percentageFilters, groupedAdmissions]);
+    const handleDelete = async (studentId) => {
+        const token = localStorage.getItem("token");
+        try {
+            await axios.delete(`http://localhost:5000/api/admissions/${studentId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+    
+            // Remove the deleted student from the state
+            const updatedAdmissions = filteredAdmissions.map(group => ({
+                ...group,
+                students: group.students.filter(student => student._id !== studentId),
+            }));
+            setFilteredAdmissions(updatedAdmissions);
+    
+            alert("Student deleted successfully");
+        } catch (error) {
+            alert("Failed to delete student.");
+        }
+    };
+    
+    const handleEditClick = (student) => {
+        setEditStudent(student);
+        setUpdatedData({
+            firstName: student.firstName,
+            lastName: student.lastName,
+            age: student.age,
+            gender: student.gender,
 
+            dob: student.dob,
+            guardianName: student.guardianName,
+            contactNumber: student.contactNumber,
+            email: student.email,
+            previousSchool: student.previousSchool,
+            emergencyContact: student.emergencyContact,
+            emergencyContactNumber: student.emergencyContactNumber,
+            ObtainedMarks: student.ObtainedMarks,
+            TotalMarks: student.TotalMarks
+        });
+    };
+
+    const handleUpdate = async () => {
+        const token = localStorage.getItem("token");
+        try {
+            const response = await axios.put(
+                `http://localhost:5000/api/admissions/${editStudent._id}`,
+                updatedData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+         console.log("response", response)
+            // Update the student in the state with the updated data
+            const updatedAdmissions = filteredAdmissions.map(group => ({
+                ...group,
+                students: group.students.map(student =>
+                    student._id === editStudent._id ? { ...student, ...updatedData } : student
+                ),
+            }));
+
+            setFilteredAdmissions(updatedAdmissions);
+            setEditStudent(null); // Close the edit form
+            alert("Student updated successfully");
+        } catch (error) {
+            alert("Failed to update student.");
+        }
+    };
     const handlePercentageChange = (classId, value) => {
         setPercentageFilters({
             ...percentageFilters,
@@ -229,6 +313,7 @@ const AdmissionsByClass = () => {
                                     <th>Obtained Marks</th>
                                     <th>Total Marks</th>
                                     <th>Percentage</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -250,12 +335,144 @@ const AdmissionsByClass = () => {
                                         <td>{student.ObtainedMarks}</td>
                                         <td>{student.TotalMarks}</td>
                                         <td>{((student.ObtainedMarks / student.TotalMarks) * 100).toFixed(2)}%</td>
+                                        <td>
+                                            <button onClick={() => handleEditClick(student)} className="btn btn-warning">
+                                                Edit
+                                            </button>
+                                            <button onClick={() => handleDelete(student._id)} className="btn btn-danger ml-2">
+                                                Delete
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 ))
+            )}
+            {editStudent && (
+                <div className="edit-form container mt-5">
+                    <h2 className="text-center text-primary">Edit Student</h2>
+                    
+                    <div className="form-group">
+                        <label className="text-danger">First Name</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.firstName}
+                            onChange={(e) => setUpdatedData({ ...updatedData, firstName: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Last Name</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.lastName}
+                            onChange={(e) => setUpdatedData({ ...updatedData, lastName: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Age</label>
+                        <input
+                            type="number"
+                            className="col-3"
+                            value={updatedData.age}
+                            onChange={(e) => setUpdatedData({ ...updatedData, age: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Gender</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.gender}
+                            onChange={(e) => setUpdatedData({ ...updatedData, gender: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Date of Birth</label>
+                        <input
+                            type="date"
+                            className="col-3"
+                            value={updatedData.dob}
+                            onChange={(e) => setUpdatedData({ ...updatedData, dob: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Guardian Name</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.guardianName}
+                            onChange={(e) => setUpdatedData({ ...updatedData, guardianName: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Contact Number</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.contactNumber}
+                            onChange={(e) => setUpdatedData({ ...updatedData, contactNumber: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Email</label>
+                        <input
+                            type="email"
+                            className="col-3"
+                            value={updatedData.email}
+                            onChange={(e) => setUpdatedData({ ...updatedData, email: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Previous School</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.previousSchool}
+                            onChange={(e) => setUpdatedData({ ...updatedData, previousSchool: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Emergency Contact</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.emergencyContact}
+                            onChange={(e) => setUpdatedData({ ...updatedData, emergencyContact: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Emergency Contact Number</label>
+                        <input
+                            type="text"
+                            className="col-3"
+                            value={updatedData.emergencyContactNumber}
+                            onChange={(e) => setUpdatedData({ ...updatedData, emergencyContactNumber: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Obtained Marks</label>
+                        <input
+                            type="number"
+                            className="col-3"
+                            value={updatedData.ObtainedMarks}
+                            onChange={(e) => setUpdatedData({ ...updatedData, ObtainedMarks: e.target.value })}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="text-danger">Total Marks</label>
+                        <input
+                            type="number"
+                            className="col-3"
+                            value={updatedData.TotalMarks}
+                            onChange={(e) => setUpdatedData({ ...updatedData, TotalMarks: e.target.value })}
+                        />
+                    </div>
+                    <button onClick={handleUpdate} className="btn btn-primary">Update</button>
+                </div>
             )}
         </div>
     );

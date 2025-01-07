@@ -138,7 +138,6 @@ exports.updateAdmission = async (req, res) => {
 };
 
 
-// Delete admission by ID
 exports.deleteAdmission = async (req, res) => {
   try {
     const deletedAdmission = await AdmissionForm.findByIdAndDelete(req.params.id);
