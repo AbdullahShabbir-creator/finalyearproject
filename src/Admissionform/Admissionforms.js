@@ -151,6 +151,7 @@ const AdmissionForm = () => {
               placeholder="Age"
               onChange={handleChange}
               onKeyUp={handleChange}
+               min="0"
               required
             />
             <select name="gender" onChange={handleChange} required>
@@ -218,8 +219,8 @@ const AdmissionForm = () => {
               required
             />
             {errors.emergencyContact && <p className="error-message">{errors.emergencyContact}</p>}
-            <input type="number" name="ObtainedMarks" placeholder="Obtained Marks" onChange={handleChange} />
-            <input type="number" name="TotalMarks" placeholder="Total Marks" onChange={handleChange} />
+            <input type="number" name="ObtainedMarks" placeholder="Obtained Marks"    min="0" onChange={handleChange} />
+            <input type="number" name="TotalMarks" placeholder="Total Marks"     min="0" onChange={handleChange} />
             {successMessage && <p className="success-message">{successMessage}</p>}
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <button type="submit" className="submit-btn col-3" style={{ marginLeft: "280px" }}>

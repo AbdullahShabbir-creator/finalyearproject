@@ -89,7 +89,7 @@ const ExamAssessment = () => {
 
   return (
     <div className="exam-assessment">
-      <h1 className='text-success'>Result</h1>
+      <h1 className='text-success'>Merit List</h1>
 
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
