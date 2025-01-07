@@ -12,7 +12,7 @@ export default function Care() {
             <img
               src="https://treehouse.edu.pk/wp-content/uploads/2022/03/WhatsApp-Image-2022-02-25-at-3.58.19-PM.jpeg"
               alt="Diversity"
-              className="card-img-top img-fluid rounded"
+              className="card-img-top img-fluid p-3 rounded"
             />
             <div className="card-body">
               <h3 className="card-title text-primary">DIVERSITY</h3>
@@ -30,7 +30,8 @@ export default function Care() {
             <img
               src="https://treehouse.edu.pk/wp-content/uploads/2022/03/WhatsApp-Image-2022-02-25-at-3.58.18-PM.jpeg"
               alt="The School Rules"
-              className="card-img-top img-fluid rounded"
+              className="card-img-top img-fluid p-3 rounded"
+              
             />
             <div className="card-body">
               <h3 className="card-title mb-3 mt-1 text-primary">
@@ -50,7 +51,7 @@ export default function Care() {
             <img
               src="https://treehouse.edu.pk/wp-content/uploads/2022/03/WhatsApp-Image-2022-02-25-at-3.58.15-PM-2.jpeg"
               alt="Safety"
-              className="card-img-top img-fluid rounded"
+              className="card-img-top img-fluid p-3 rounded"
             />
             <div className="card-body">
               <h3 className="card-title text-primary">SAFETY</h3>
