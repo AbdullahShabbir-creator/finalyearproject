@@ -1,62 +1,63 @@
 /* General Table Styles */
 .class-admission-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    table-layout: auto; /* Ensure the columns expand as needed */
-  }
-  .class-admission-title{
-    margin-top: 40px;
-    text-align: center;
-    color: green;
-  }
-  .class-admission-table th, .class-admission-table td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
-    white-space: nowrap; /* Prevent text from wrapping */
-  }
-  
-  .class-admission-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-  }
-  
-  /* Hover effect on rows */
-  .class-admission-table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Make table scrollable on small screens */
-  .class-admission-table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  }
-  
-  /* Small screen adjustments for table headers and cells */
-  @media (max-width: 768px) {
-    .class-admission-table th,
-    .class-admission-table td {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: auto; /* Ensure the columns expand as needed */
+}
+
+.class-admission-title{
+  margin-top: 40px;
+  text-align: center;
+  color: green;
+}
+
+.class-admission-table th, .class-admission-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.class-admission-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Hover effect on rows */
+.class-admission-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Make table scrollable on small screens */
+.class-admission-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Small screen adjustments for table headers and cells */
+@media (max-width: 768px) {
+  .class-admission-table th,
+  .class-admission-table td {
       padding: 8px;  /* Reduce padding */
       font-size: 14px;  /* Smaller text size */
-    }
-  
-    /* Reduce font size for header */
-    .class-admission-table th {
-      font-size: 12px; /* Smaller header text */
-    }
   }
-  
-  /* For very small screens like mobile */
-  @media (max-width: 480px) {
-    .class-admission-table th,
-    .class-admission-table td {
+
+  /* Reduce font size for header */
+  .class-admission-table th {
+      font-size: 12px; /* Smaller header text */
+  }
+}
+
+/* For very small screens like mobile */
+@media (max-width: 480px) {
+  .class-admission-table th,
+  .class-admission-table td {
       padding: 6px;
       font-size: 12px; /* Further reduce font size */
-    }
-  
-    .class-admission-table th {
-      font-size: 10px; /* Even smaller header text */
-    }
   }
-  
+
+  .class-admission-table th {
+      font-size: 10px; /* Even smaller header text */
+  }
+}

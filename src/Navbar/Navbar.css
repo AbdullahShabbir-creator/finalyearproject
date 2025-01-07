@@ -1,0 +1,96 @@
+/* Navbar Base Styling */
+.custom-navbar {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Logo Section */
+  .logo-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .school-logo {
+    height: 45px;
+    margin-right: 10px;
+  }
+  
+  .school-name {
+    margin: 0;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  
+  /* Nav Links */
+  .custom-nav-links {
+    font-family: "fangsong";
+  }
+  
+  .nav-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover Effects */
+  .nav-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  /* Dropdowns */
+  .dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .dropdown-item {
+    color: #333;
+    padding: 8px 16px;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+  }
+  
+  /* Special Links */
+  .nav-link-admissions:hover {
+    color: #28a745;
+  }
+  
+  .nav-link-results:hover {
+    color: #dc3545;
+  }
+  
+  .nav-link-gallery:hover {
+    color: #17a2b8;
+  }
+  
+  .nav-link-events:hover {
+    color: #ffc107;
+  }
+  
+  .nav-link-contact:hover {
+    color: #6c757d;
+  }
+  
+  .nav-link-logout:hover {
+    color: #ff4b5c;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .school-name {
+      font-size: 14px;
+    }
+  
+    .nav-link {
+      font-size: 14px;
+    }
+  }
+  

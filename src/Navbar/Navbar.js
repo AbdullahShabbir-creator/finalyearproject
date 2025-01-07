@@ -14,7 +14,7 @@ const StyledNavLink = styled(Link)`
     transform: scale(1.01); // Slightly enlarge the link on hover
   }
 `;
-     
+
 const Navbar = () => {
   const isLoggedIn = localStorage.getItem('token') !== null;
   const navigate = useNavigate();
@@ -226,27 +226,37 @@ const Navbar = () => {
               </>
             )}
 
-           
+
             {isLoggedIn && (
               <>
-                
                 <li>
-                  <StyledNavLink className="dropdown-item" to="/ExamAssessment">
+                  <StyledNavLink className="nav-link text-dark m-2" to="/AdmissionsByClass">
+                    AdmissionsByClass
+                  </StyledNavLink>
+                </li>
+                <li>
+
+                  <StyledNavLink className="nav-link text-dark m-2" to="/ExamAssessment">
                     Result
                   </StyledNavLink>
                 </li>
                 <li className="nav-item">
-                  <StyledNavLink className="nav-link text-dark" to="/Schoolnews">
+                  <StyledNavLink className="nav-link text-dark m-2" to="/Schoolnews">
                     Contact
                   </StyledNavLink>
                 </li>
-                <li>
-                  <StyledNavLink className="dropdown-item" to="/AdmissionsByClass">
-                    AdmissionsByClass
+                <li className="nav-item">
+                  <StyledNavLink className="nav-link text-dark m-2" to="/Schoolnews">
+                    SchoolGallery
                   </StyledNavLink>
                 </li>
                 <li className="nav-item">
-                  <StyledNavLink className="nav-link text-dark" onClick={handleLogout}>
+                  <StyledNavLink className="nav-link text-dark m-2" to="/StudentCalender">
+                    EventsCalendar
+                  </StyledNavLink>
+                </li>
+                <li className="nav-item">
+                  <StyledNavLink className="nav-link text-dark m-2" onClick={handleLogout}>
                     Logout
                   </StyledNavLink>
                 </li>

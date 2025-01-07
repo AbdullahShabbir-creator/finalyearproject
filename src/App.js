@@ -52,7 +52,7 @@ function AppWithNavigation() {
   return (
     <>
       <Routes>
-        {/* Home Route */}
+        
         <Route
           path="/"
           element={
@@ -70,9 +70,6 @@ function AppWithNavigation() {
         />
 
       
-       
-
-        {/* Other Routes */}
         <Route path="/VisionMissionGoals" element={<Layout><VisionMissionGoals /></Layout>} />
         <Route path="/EducationCards" element={<Layout><EducationCards /></Layout>} />
         <Route path="/Schoolnews" element={<Layout><Schoolnews /></Layout>} />
@@ -90,7 +87,7 @@ function AppWithNavigation() {
         <Route path="/ExamAssessment" element={<Layout><ExamAssessment /></Layout>} />
         <Route path="/AdmissionsByClass" element={<Layout><AdmissionsByClass /></Layout>} />
         <Route path="/login" element={<Layout><LoginAD /></Layout>} />
-        <Route path="/" element={<Layout><ff/></Layout>} />
+
         
       </Routes>
 
@@ -105,7 +102,7 @@ function AppWithNavigation() {
           padding: "4px",
           fontSize: "20px",
         }}
-        onClick={toggleChatbot} // Open chatbot popup
+        onClick={toggleChatbot} 
       >
         <i className="fas fa-comment-dots "></i>
       </button>

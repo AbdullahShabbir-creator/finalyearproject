@@ -12,18 +12,16 @@ const cron = require('node-cron');  // Import node-cron for scheduling
 const path = require('path');  // Add this to handle file paths correctly
 const cors = require('cors');
 const chatbotRoutes = require("./routes/chatbotRoutes");
-const feestructureRoutes=require("./routes/feestructureRoutes")
-// Initialize app before using it
+const scholarshipRoutes = require('./routes/scholarshipRoutes');
+
 const app = express();
 
 dotenv.config();
 
-// Parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-const scholarshipRoutes = require('./routes/scholarshipRoutes');
-// Serve uploaded files (PDFs)
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect to MongoDB
@@ -41,8 +39,7 @@ app.use('/api', topStudentsRoutes);
 app.use('/api/scholarship', scholarshipRoutes);
 app.use("/api", chatbotRoutes);
 
-app.use("/api", feestructureRoutes);
-// Start the server and pass the HTTP server to WebSocket
+
 const server = app.listen(5000, () => {
   console.log('Server running on port 5000');
 });
